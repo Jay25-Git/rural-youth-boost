@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,7 +16,7 @@ const SkillDetail = () => {
 
   if (!skill) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-mario-blue to-mario-light-blue flex items-center justify-center">
+      <div className="min-h-screen bg-mario-white flex items-center justify-center">
         <div className="text-center bg-white p-8 rounded-lg shadow-lg border-4 border-mario-red">
           <h1 className="text-2xl font-mario text-mario-red mb-4">Mamma Mia! Skill Not Found!</h1>
           <Link to="/">
@@ -79,7 +78,7 @@ const SkillDetail = () => {
   const colorClasses = getColorClasses(color);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-mario-yellow via-mario-orange to-mario-red">
+    <div className="min-h-screen bg-mario-white">
       {/* Header with Mario theme */}
       <div className={`bg-gradient-to-r ${colorClasses.bg} text-white py-8 relative overflow-hidden`}>
         <div className="absolute inset-0 opacity-10">
