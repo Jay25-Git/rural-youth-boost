@@ -37,6 +37,18 @@ export const careerSkills = [
         description: 'Essential resume writing tips for first-time job seekers.',
         url: 'https://www.youtube.com/watch?v=ciO9pOpB7ok'
       }
+    ],
+    articles: [
+      {
+        title: 'The Ultimate Resume Writing Guide',
+        description: 'Comprehensive guide covering everything from formatting to content optimization.',
+        url: 'https://www.indeed.com/career-advice/resumes-cover-letters/how-to-make-a-resume'
+      },
+      {
+        title: 'Resume Mistakes to Avoid',
+        description: 'Common resume errors that can cost you job opportunities and how to fix them.',
+        url: 'https://www.thebalancecareers.com/top-resume-mistakes-2063319'
+      }
     ]
   },
   {
@@ -76,6 +88,18 @@ export const careerSkills = [
         title: 'How to Answer Tell Me About Yourself',
         description: 'Master the most common interview question with this guide.',
         url: 'https://www.youtube.com/watch?v=kayOhGRcNt4'
+      }
+    ],
+    articles: [
+      {
+        title: 'How to Prepare for Any Job Interview',
+        description: 'Complete preparation checklist and strategies for interview success.',
+        url: 'https://www.harvard.edu/career-services/interview-preparation/'
+      },
+      {
+        title: 'Body Language Tips for Interviews',
+        description: 'Learn how to use nonverbal communication to make a great impression.',
+        url: 'https://www.themuse.com/advice/body-language-tips-for-job-interviews'
       }
     ]
   },
@@ -117,6 +141,18 @@ export const careerSkills = [
         description: 'Master the art of listening to improve your relationships.',
         url: 'https://www.youtube.com/watch?v=rzsVh8YwZEQ'
       }
+    ],
+    articles: [
+      {
+        title: 'The Art of Effective Communication',
+        description: 'Master the fundamentals of clear, persuasive communication in any setting.',
+        url: 'https://www.mindtools.com/pages/article/newCS_99.htm'
+      },
+      {
+        title: 'Building Better Workplace Relationships',
+        description: 'Strategies for improving communication and collaboration with colleagues.',
+        url: 'https://www.forbes.com/sites/forbescoachescouncil/2019/01/15/15-ways-to-improve-communication-in-the-workplace/'
+      }
     ]
   },
   {
@@ -156,6 +192,18 @@ export const careerSkills = [
         title: 'Microsoft Office Tutorial',
         description: 'Learn the basics of Word, Excel, and PowerPoint.',
         url: 'https://www.youtube.com/watch?v=Z-iDyYJZkfw'
+      }
+    ],
+    articles: [
+      {
+        title: 'Essential Computer Skills for the Modern Workplace',
+        description: 'A comprehensive guide to the digital skills every professional needs.',
+        url: 'https://www.indeed.com/career-advice/career-development/computer-skills'
+      },
+      {
+        title: 'Improve Your Typing Speed and Accuracy',
+        description: 'Tips and techniques to become a faster, more accurate typist.',
+        url: 'https://www.typing.com/blog/typing-tips-for-beginners'
       }
     ]
   },
@@ -197,6 +245,18 @@ export const careerSkills = [
         description: 'Learn how to build and maintain trust with your teammates.',
         url: 'https://www.youtube.com/watch?v=1BzJsIGNpXE'
       }
+    ],
+    articles: [
+      {
+        title: 'The Five Dysfunctions of a Team',
+        description: 'Understanding common team problems and how to overcome them.',
+        url: 'https://www.tablegroup.com/five-dysfunctions/'
+      },
+      {
+        title: 'Collaborative Leadership in Teams',
+        description: 'How to lead and participate effectively in collaborative environments.',
+        url: 'https://hbr.org/2021/07/collaborative-leadership-lessons-from-the-world-of-sports'
+      }
     ]
   },
   {
@@ -236,6 +296,18 @@ export const careerSkills = [
         title: 'Dealing with Difficult Customers',
         description: 'Strategies for handling challenging customer interactions.',
         url: 'https://www.youtube.com/watch?v=V2FqZSR3IjY'
+      }
+    ],
+    articles: [
+      {
+        title: 'The Psychology of Customer Service',
+        description: 'Understanding customer behavior and how to respond effectively.',
+        url: 'https://blog.hubspot.com/service/psychology-of-customer-service'
+      },
+      {
+        title: 'Building Customer Loyalty Through Service',
+        description: 'How exceptional service creates lasting customer relationships.',
+        url: 'https://www.salesforce.com/resources/articles/customer-service/'
       }
     ]
   }
@@ -280,6 +352,18 @@ export const lifeSkills = [
         description: 'Learn this popular time management method.',
         url: 'https://www.youtube.com/watch?v=VFW3Ld7JO0w'
       }
+    ],
+    articles: [
+      {
+        title: 'The Science of Productivity',
+        description: 'Research-backed strategies for getting more done in less time.',
+        url: 'https://www.scientificamerican.com/article/the-science-of-productivity/'
+      },
+      {
+        title: 'Deep Work vs. Shallow Work',
+        description: 'Understanding the difference and how to prioritize meaningful tasks.',
+        url: 'https://blog.doist.com/deep-work/'
+      }
     ]
   },
   {
@@ -319,6 +403,18 @@ export const lifeSkills = [
         title: 'How to Save Money Fast',
         description: 'Practical tips to start saving money immediately.',
         url: 'https://www.youtube.com/watch?v=yGTfZeDva3Y'
+      }
+    ],
+    articles: [
+      {
+        title: 'Personal Finance 101',
+        description: 'Complete guide to managing your money from budgeting to investing.',
+        url: 'https://www.nerdwallet.com/article/finance/personal-finance-101'
+      },
+      {
+        title: 'Emergency Fund Basics',
+        description: 'Why you need an emergency fund and how to build one.',
+        url: 'https://www.investopedia.com/articles/personal-finance/040715/how-much-you-should-have-your-emergency-fund.asp'
       }
     ]
   },
@@ -360,6 +456,18 @@ export const lifeSkills = [
         description: 'Learn to prepare nutritious meals in advance.',
         url: 'https://www.youtube.com/watch?v=fB2s5zQYJ-o'
       }
+    ],
+    articles: [
+      {
+        title: 'The Blue Zones Lifestyle',
+        description: 'Lessons from the world\'s longest-living populations.',
+        url: 'https://www.bluezones.com/2016/11/power-9/'
+      },
+      {
+        title: 'Building Sustainable Healthy Habits',
+        description: 'How to make lasting changes to your lifestyle.',
+        url: 'https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/healthy-habits/art-20049121'
+      }
     ]
   },
   {
@@ -399,6 +507,18 @@ export const lifeSkills = [
         title: 'Critical Thinking Skills',
         description: 'Develop your ability to analyze and evaluate information.',
         url: 'https://www.youtube.com/watch?v=Cum3k-Wglfw'
+      }
+    ],
+    articles: [
+      {
+        title: 'The Problem-Solving Process',
+        description: 'A step-by-step guide to tackling any challenge effectively.',
+        url: 'https://www.mindtools.com/pages/article/newTMC_00.htm'
+      },
+      {
+        title: 'Design Thinking for Problem Solving',
+        description: 'Using creative approaches to find innovative solutions.',
+        url: 'https://www.ideou.com/blogs/inspiration/what-is-design-thinking'
       }
     ]
   },
@@ -440,6 +560,18 @@ export const lifeSkills = [
         description: 'Simple breathing techniques to calm your mind.',
         url: 'https://www.youtube.com/watch?v=aXItOY0sLRY'
       }
+    ],
+    articles: [
+      {
+        title: 'Understanding Stress and How to Manage It',
+        description: 'Comprehensive guide to stress, its effects, and proven management strategies.',
+        url: 'https://www.apa.org/topics/stress'
+      },
+      {
+        title: 'Mindfulness and Stress Reduction',
+        description: 'How mindfulness practices can help you manage stress and anxiety.',
+        url: 'https://www.mindful.org/mindfulness-how-to-do-it/'
+      }
     ]
   },
   {
@@ -479,6 +611,18 @@ export const lifeSkills = [
         title: 'Goal Setting Strategies That Work',
         description: 'Research-backed methods for achieving your goals.',
         url: 'https://www.youtube.com/watch?v=XpKDQudyPN0'
+      }
+    ],
+    articles: [
+      {
+        title: 'The Psychology of Goal Achievement',
+        description: 'Scientific insights into what makes people successful at reaching their goals.',
+        url: 'https://www.psychologytoday.com/us/blog/the-science-success/201101/the-psychology-goal-achievement'
+      },
+      {
+        title: 'Creating an Action Plan for Your Goals',
+        description: 'Step-by-step guide to turning your dreams into actionable plans.',
+        url: 'https://www.mindtools.com/pages/article/newHTE_06.htm'
       }
     ]
   }
@@ -523,6 +667,18 @@ export const hobbySkills = [
         description: 'Take amazing photos with just your smartphone.',
         url: 'https://www.youtube.com/watch?v=6xgqwEWmyV8'
       }
+    ],
+    articles: [
+      {
+        title: 'Composition Techniques for Better Photos',
+        description: 'Master the art of composing compelling photographs.',
+        url: 'https://digital-photography-school.com/20-composition-techniques-that-will-improve-your-photos/'
+      },
+      {
+        title: 'Understanding Camera Settings',
+        description: 'Learn about aperture, shutter speed, and ISO for manual photography.',
+        url: 'https://www.photography-course.net/camera-basics/'
+      }
     ]
   },
   {
@@ -562,6 +718,18 @@ export const hobbySkills = [
         title: 'Easy Healthy Recipes',
         description: 'Simple, nutritious meals you can make at home.',
         url: 'https://www.youtube.com/watch?v=jVVNdlBhJOk'
+      }
+    ],
+    articles: [
+      {
+        title: 'Essential Kitchen Equipment for Beginners',
+        description: 'What you really need to start cooking at home.',
+        url: 'https://www.seriouseats.com/essential-kitchen-equipment-guide'
+      },
+      {
+        title: 'Food Safety and Kitchen Hygiene',
+        description: 'Important guidelines for safe and healthy cooking practices.',
+        url: 'https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling'
       }
     ]
   },
@@ -603,6 +771,18 @@ export const hobbySkills = [
         description: 'Learn to grow plants in pots and small spaces.',
         url: 'https://www.youtube.com/watch?v=8VNl8PFrQl8'
       }
+    ],
+    articles: [
+      {
+        title: 'Starting Your First Vegetable Garden',
+        description: 'Complete guide to growing your own food at home.',
+        url: 'https://www.almanac.com/vegetable-gardening-for-beginners'
+      },
+      {
+        title: 'Soil Health and Composting',
+        description: 'Understanding soil composition and creating nutrient-rich compost.',
+        url: 'https://www.epa.gov/recycle/composting-home'
+      }
     ]
   },
   {
@@ -642,6 +822,18 @@ export const hobbySkills = [
         title: 'Piano Basics for Beginners',
         description: 'Learn to play piano with simple, easy lessons.',
         url: 'https://www.youtube.com/watch?v=hq2-rJ0iOhA'
+      }
+    ],
+    articles: [
+      {
+        title: 'The Benefits of Learning Music',
+        description: 'How musical training enhances cognitive function and wellbeing.',
+        url: 'https://www.psychologytoday.com/us/blog/the-athletes-way/201310/the-neuroscience-music-mindset-and-motivation'
+      },
+      {
+        title: 'Choosing Your First Instrument',
+        description: 'Guide to selecting the right instrument based on your goals and lifestyle.',
+        url: 'https://www.musicnotes.com/now/tips/how-to-choose-your-first-instrument/'
       }
     ]
   },
@@ -683,6 +875,18 @@ export const hobbySkills = [
         description: 'Learn basic watercolor techniques and create beautiful art.',
         url: 'https://www.youtube.com/watch?v=wqJrGKizl6c'
       }
+    ],
+    articles: [
+      {
+        title: 'The Therapeutic Benefits of Crafting',
+        description: 'How creative activities improve mental health and wellbeing.',
+        url: 'https://www.health.harvard.edu/blog/the-health-benefits-of-hobbies-2016051910581'
+      },
+      {
+        title: 'Setting Up Your Craft Space',
+        description: 'Tips for creating an organized and inspiring workspace for your projects.',
+        url: 'https://www.thesprucecrafts.com/setting-up-craft-room-1252477'
+      }
     ]
   },
   {
@@ -721,7 +925,19 @@ export const hobbySkills = [
       {
         title: 'Basic Basketball Skills',
         description: 'Learn fundamental basketball techniques and rules.',
-        url: 'https://www.youtube.com/watch?v=b6q3qQYbgR8'
+        url: 'https://www.youtube.com/watch?v=b6q3qQbgR8'
+      }
+    ],
+    articles: [
+      {
+        title: 'Getting Started with Exercise',
+        description: 'A beginner\'s guide to starting a fitness routine that sticks.',
+        url: 'https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise/art-20048389'
+      },
+      {
+        title: 'The Social Benefits of Team Sports',
+        description: 'How participating in sports builds relationships and life skills.',
+        url: 'https://www.verywellfit.com/benefits-of-team-sports-3120855'
       }
     ]
   }
