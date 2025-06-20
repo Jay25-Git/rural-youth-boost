@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, CheckCircle, XCircle, RotateCcw, Play, BookOpen, Lightbulb, FileText } from 'lucide-react';
 import { careerSkills, lifeSkills, hobbySkills } from '../data/skillsData';
+import { SkillCompletion } from '@/components/SkillCompletion';
 
 const SkillDetail = () => {
   const { skillId } = useParams();
@@ -76,6 +77,31 @@ const SkillDetail = () => {
   };
 
   const colorClasses = getColorClasses(color);
+
+  const getBadgeName = (skillTitle: string): string => {
+    const badgeMap: { [key: string]: string } = {
+      'Resume Building': 'CV Crafter',
+      'Photography': 'Lens Lover',
+      'Interview Skills': 'Interview Ace',
+      'Networking': 'Connection Master',
+      'Public Speaking': 'Stage Star',
+      'Leadership': 'Team Captain',
+      'Time Management': 'Clock Commander',
+      'Budgeting': 'Money Manager',
+      'Cooking': 'Kitchen Hero',
+      'Car Maintenance': 'Auto Expert',
+      'Home Organization': 'Space Organizer',
+      'Healthy Eating': 'Nutrition Ninja',
+      'Guitar Playing': 'String Strummer',
+      'Painting': 'Canvas Creator',
+      'Gardening': 'Green Thumb',
+      'Chess': 'Chess Champion',
+      'Reading': 'Book Buddy',
+      'Dancing': 'Rhythm Ruler'
+    };
+    
+    return badgeMap[skillTitle] || `${skillTitle} Expert`;
+  };
 
   return (
     <div className="min-h-screen bg-mario-white">
@@ -195,6 +221,16 @@ const SkillDetail = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Skill Completion Section */}
+        <div className="mt-8">
+          <SkillCompletion
+            skillId={skill.id}
+            skillTitle={skill.title}
+            badgeName={getBadgeName(skill.title)}
+            colorClasses={colorClasses}
+          />
         </div>
 
         {/* How to Learn This Skill Section */}
