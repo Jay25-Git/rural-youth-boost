@@ -32,6 +32,7 @@ export default {
 				'mario-light-blue': '#3399FF',
 				'mario-yellow': '#FFCC00',
 				'mario-green': '#00AA00',
+				'mario-dark-green': '#008800',
 				'mario-orange': '#FF6600',
 				'mario-purple': '#9933FF',
 				'mario-black': '#000000',

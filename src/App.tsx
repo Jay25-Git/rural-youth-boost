@@ -13,6 +13,7 @@ import SkillDetail from "./pages/SkillDetail";
 import CollectedStarsAndBadges from "./pages/CollectedStarsAndBadges";
 import SmartMario from "./pages/SmartMario";
 import MentorMode from "./pages/MentorMode";
+import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
               <Route path="/collected" element={<CollectedStarsAndBadges />} />
               <Route path="/smart-mario" element={<SmartMario />} />
               <Route path="/mentor-mode" element={<MentorMode />} />
+              <Route path="/community" element={<Community />} />
               <Route path="/" element={<Navigate to="/auth" replace />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
