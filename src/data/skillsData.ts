@@ -1,3 +1,4 @@
+
 export const careerSkills = [
   {
     id: 'resume-building',
@@ -28,14 +29,9 @@ export const careerSkills = [
     },
     youtubeVideos: [
       {
-        title: 'How to Write a Resume in 2024',
-        description: 'Step-by-step guide to creating a professional resume that gets interviews.',
+        title: 'How to Write a Resume - Complete Guide',
+        description: 'Comprehensive guide to creating a professional resume that stands out.',
         url: 'https://www.youtube.com/watch?v=Tt08KmFfIYQ'
-      },
-      {
-        title: 'Resume Tips for Beginners',
-        description: 'Essential resume writing tips for first-time job seekers.',
-        url: 'https://www.youtube.com/watch?v=ciO9pOpB7ok'
       }
     ],
     articles: [
@@ -80,13 +76,8 @@ export const careerSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Job Interview Tips & Tricks',
-        description: 'Expert advice on how to ace your next job interview.',
-        url: 'https://www.youtube.com/watch?v=HG68Ymazo18'
-      },
-      {
-        title: 'How to Answer Tell Me About Yourself',
-        description: 'Master the most common interview question with this guide.',
+        title: 'How to Answer "Tell Me About Yourself" - Interview Question',
+        description: 'Learn how to craft the perfect response to this common interview question.',
         url: 'https://www.youtube.com/watch?v=kayOhGRcNt4'
       }
     ],
@@ -135,11 +126,6 @@ export const careerSkills = [
         title: 'Effective Communication Skills',
         description: 'Learn the fundamentals of clear and effective communication.',
         url: 'https://www.youtube.com/watch?v=HAnw168huqA'
-      },
-      {
-        title: 'Active Listening Skills',
-        description: 'Master the art of listening to improve your relationships.',
-        url: 'https://www.youtube.com/watch?v=rzsVh8YwZEQ'
       }
     ],
     articles: [
@@ -184,14 +170,9 @@ export const careerSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Computer Basics for Beginners',
-        description: 'Complete guide to using a computer for the first time.',
+        title: 'Computer Basics Tutorial',
+        description: 'Learn essential computer skills for beginners.',
         url: 'https://www.youtube.com/watch?v=y8qKqB5bOcY'
-      },
-      {
-        title: 'Microsoft Office Tutorial',
-        description: 'Learn the basics of Word, Excel, and PowerPoint.',
-        url: 'https://www.youtube.com/watch?v=Z-iDyYJZkfw'
       }
     ],
     articles: [
@@ -236,14 +217,9 @@ export const careerSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Teamwork Skills in the Workplace',
+        title: 'Teamwork and Collaboration Skills',
         description: 'Essential skills for working effectively in teams.',
-        url: 'https://www.youtube.com/watch?v=KTL-KdXi7r4'
-      },
-      {
-        title: 'Building Trust in Teams',
-        description: 'Learn how to build and maintain trust with your teammates.',
-        url: 'https://www.youtube.com/watch?v=1BzJsIGNpXE'
+        url: 'https://www.youtube.com/watch?v=K8NVcKGaEsc'
       }
     ],
     articles: [
@@ -288,14 +264,9 @@ export const careerSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Customer Service Excellence',
+        title: 'Customer Service Skills Training',
         description: 'Learn the fundamentals of providing excellent customer service.',
-        url: 'https://www.youtube.com/watch?v=rIKy7BfKYz8'
-      },
-      {
-        title: 'Dealing with Difficult Customers',
-        description: 'Strategies for handling challenging customer interactions.',
-        url: 'https://www.youtube.com/watch?v=V2FqZSR3IjY'
+        url: 'https://www.youtube.com/watch?v=J3h5UNGFrPA'
       }
     ],
     articles: [
@@ -343,14 +314,9 @@ export const lifeSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Time Management Tips for Students',
+        title: 'Time Management Tips That Actually Work',
         description: 'Practical strategies to manage your time effectively.',
         url: 'https://www.youtube.com/watch?v=iDbdXTMnOmE'
-      },
-      {
-        title: 'The Pomodoro Technique Explained',
-        description: 'Learn this popular time management method.',
-        url: 'https://www.youtube.com/watch?v=VFW3Ld7JO0w'
       }
     ],
     articles: [
@@ -395,14 +361,9 @@ export const lifeSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Budgeting for Beginners',
+        title: 'Budgeting Basics - How to Make a Budget',
         description: 'Learn how to create and stick to your first budget.',
         url: 'https://www.youtube.com/watch?v=sVKQn2R7iCk'
-      },
-      {
-        title: 'How to Save Money Fast',
-        description: 'Practical tips to start saving money immediately.',
-        url: 'https://www.youtube.com/watch?v=yGTfZeDva3Y'
       }
     ],
     articles: [
@@ -447,14 +408,9 @@ export const lifeSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Healthy Habits for Beginners',
+        title: 'Healthy Habits for a Better Life',
         description: 'Simple ways to start living a healthier lifestyle.',
-        url: 'https://www.youtube.com/watch?v=Ml4Jh10EUYY'
-      },
-      {
-        title: 'Easy Meal Prep for Healthy Eating',
-        description: 'Learn to prepare nutritious meals in advance.',
-        url: 'https://www.youtube.com/watch?v=fB2s5zQYJ-o'
+        url: 'https://www.youtube.com/watch?v=WLDz1BP0mTM'
       }
     ],
     articles: [
@@ -499,13 +455,8 @@ export const lifeSkills = [
     },
     youtubeVideos: [
       {
-        title: 'Problem Solving Techniques',
+        title: 'Problem Solving Skills',
         description: 'Learn systematic approaches to solving any problem.',
-        url: 'https://www.youtube.com/watch?v=n63RXwJVfs4'
-      },
-      {
-        title: 'Critical Thinking Skills',
-        description: 'Develop your ability to analyze and evaluate information.',
         url: 'https://www.youtube.com/watch?v=Cum3k-Wglfw'
       }
     ],
@@ -554,11 +505,6 @@ export const lifeSkills = [
         title: 'Stress Management Techniques',
         description: 'Effective ways to manage and reduce stress in your life.',
         url: 'https://www.youtube.com/watch?v=hnpQrMqDoqE'
-      },
-      {
-        title: 'Breathing Exercises for Anxiety',
-        description: 'Simple breathing techniques to calm your mind.',
-        url: 'https://www.youtube.com/watch?v=aXItOY0sLRY'
       }
     ],
     articles: [
@@ -603,14 +549,9 @@ export const lifeSkills = [
     },
     youtubeVideos: [
       {
-        title: 'How to Set SMART Goals',
+        title: 'How to Set Goals and Achieve Them',
         description: 'Learn the proven framework for setting achievable goals.',
         url: 'https://www.youtube.com/watch?v=1-SvuFIQjK8'
-      },
-      {
-        title: 'Goal Setting Strategies That Work',
-        description: 'Research-backed methods for achieving your goals.',
-        url: 'https://www.youtube.com/watch?v=XpKDQudyPN0'
       }
     ],
     articles: [
@@ -661,11 +602,6 @@ export const hobbySkills = [
         title: 'Photography Basics for Beginners',
         description: 'Learn the fundamental concepts of photography.',
         url: 'https://www.youtube.com/watch?v=V7z7BAZdt2M'
-      },
-      {
-        title: 'Phone Photography Tips',
-        description: 'Take amazing photos with just your smartphone.',
-        url: 'https://www.youtube.com/watch?v=6xgqwEWmyV8'
       }
     ],
     articles: [
@@ -710,14 +646,9 @@ export const hobbySkills = [
     },
     youtubeVideos: [
       {
-        title: 'Cooking Basics for Beginners',
+        title: 'Basic Cooking Skills Everyone Should Know',
         description: 'Essential cooking skills everyone should know.',
         url: 'https://www.youtube.com/watch?v=ZJy4B0-hR9Q'
-      },
-      {
-        title: 'Easy Healthy Recipes',
-        description: 'Simple, nutritious meals you can make at home.',
-        url: 'https://www.youtube.com/watch?v=jVVNdlBhJOk'
       }
     ],
     articles: [
@@ -762,14 +693,9 @@ export const hobbySkills = [
     },
     youtubeVideos: [
       {
-        title: 'Gardening for Beginners',
+        title: 'Gardening for Beginners - Complete Guide',
         description: 'Everything you need to know to start your first garden.',
         url: 'https://www.youtube.com/watch?v=l9Lz4PgQ6ak'
-      },
-      {
-        title: 'Container Gardening Tips',
-        description: 'Learn to grow plants in pots and small spaces.',
-        url: 'https://www.youtube.com/watch?v=8VNl8PFrQl8'
       }
     ],
     articles: [
@@ -814,14 +740,9 @@ export const hobbySkills = [
     },
     youtubeVideos: [
       {
-        title: 'Learn Guitar in 30 Days',
-        description: 'Beginner guitar lessons to get you started.',
-        url: 'https://www.youtube.com/watch?v=F3W_alUuFkA'
-      },
-      {
-        title: 'Piano Basics for Beginners',
-        description: 'Learn to play piano with simple, easy lessons.',
-        url: 'https://www.youtube.com/watch?v=hq2-rJ0iOhA'
+        title: 'Learn Guitar - Beginner Lesson 1',
+        description: 'First guitar lesson for complete beginners.',
+        url: 'https://www.youtube.com/watch?v=wEvQvSiSyLw'
       }
     ],
     articles: [
@@ -866,14 +787,9 @@ export const hobbySkills = [
     },
     youtubeVideos: [
       {
-        title: 'Easy DIY Crafts for Beginners',
+        title: '5 Easy DIY Crafts for Beginners',
         description: 'Simple craft projects you can do at home.',
-        url: 'https://www.youtube.com/watch?v=jQgn2KmPUV8'
-      },
-      {
-        title: 'Watercolor Painting for Beginners',
-        description: 'Learn basic watercolor techniques and create beautiful art.',
-        url: 'https://www.youtube.com/watch?v=wqJrGKizl6c'
+        url: 'https://www.youtube.com/watch?v=8cMGG9xTcpM'
       }
     ],
     articles: [
@@ -918,14 +834,9 @@ export const hobbySkills = [
     },
     youtubeVideos: [
       {
-        title: 'Home Workouts for Beginners',
+        title: '10 Minute Beginner Workout',
         description: 'Simple exercises you can do without any equipment.',
         url: 'https://www.youtube.com/watch?v=ml6cT4AZdqI'
-      },
-      {
-        title: 'Basic Basketball Skills',
-        description: 'Learn fundamental basketball techniques and rules.',
-        url: 'https://www.youtube.com/watch?v=b6q3qQbgR8'
       }
     ],
     articles: [
