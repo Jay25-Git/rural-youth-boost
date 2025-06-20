@@ -71,13 +71,15 @@ export const AnimatedMario = () => {
       {/* Speech bubble */}
       {showSpeech && (
         <div 
-          className="absolute bottom-20 bg-mario-white border-4 border-mario-black rounded-lg p-3 shadow-lg animate-scale-in pointer-events-none"
+          className="absolute bottom-20 bg-mario-white border-4 border-mario-black rounded-lg p-4 shadow-lg animate-scale-in pointer-events-none"
           style={{ 
             left: `${position}px`,
-            transform: direction === -1 ? 'translateX(-80%)' : 'translateX(20%)'
+            transform: direction === -1 ? 'translateX(-80%)' : 'translateX(20%)',
+            minWidth: '200px',
+            maxWidth: '300px'
           }}
         >
-          <div className="font-mario-text font-bold text-mario-red text-sm whitespace-nowrap">
+          <div className="font-mario-text font-bold text-mario-red text-base whitespace-normal">
             {currentPhrase}
           </div>
           <div 
@@ -102,7 +104,7 @@ export const AnimatedMario = () => {
       >
         <div className="bg-mario-red p-4 rounded-full border-4 border-mario-black shadow-lg hover:shadow-xl">
           <div className={`text-4xl ${isMoving ? 'animate-bounce-mario' : ''}`}>
-            🍄
+            👨‍🔧
           </div>
         </div>
         
