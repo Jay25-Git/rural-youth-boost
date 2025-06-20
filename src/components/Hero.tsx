@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Users, Trophy } from 'lucide-react';
+import { Users, Trophy, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { AuthButton } from './AuthButton';
@@ -46,6 +46,12 @@ export const Hero = () => {
         
         {/* Action Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <Link to="/collected" data-tutorial="achievements-button">
+            <Button className="bg-mario-yellow hover:bg-mario-orange text-mario-red font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
+              <Star size={20} className="mr-2" />
+              {t('viewAchievements')} 🏆
+            </Button>
+          </Link>
           <Link to="/community">
             <Button className="bg-mario-green hover:bg-mario-dark-green text-white font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
               <Users size={20} className="mr-2" />
