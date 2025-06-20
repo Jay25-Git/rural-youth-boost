@@ -11,7 +11,7 @@ const SkillDetail = () => {
   const { skillId } = useParams();
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
-  const [isVideosOpen, setIsVideosOpen] = useState(false);
+  const [openVideos, setOpenVideos] = useState<{ [key: number]: boolean }>({});
 
   // Find the skill across all categories
   const allSkills = [...careerSkills, ...lifeSkills, ...hobbySkills];
@@ -40,6 +40,13 @@ const SkillDetail = () => {
   const resetQuiz = () => {
     setSelectedAnswer(null);
     setShowResult(false);
+  };
+
+  const toggleVideo = (index: number) => {
+    setOpenVideos(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
   };
 
   const getCategoryInfo = () => {
@@ -281,79 +288,82 @@ const SkillDetail = () => {
           </CardContent>
         </Card>
 
-        {/* YouTube Videos Section with Dropdown */}
+        {/* YouTube Videos Section */}
         <Card className="mt-8 border-4 border-mario-red shadow-lg">
-          <Collapsible open={isVideosOpen} onOpenChange={setIsVideosOpen}>
-            <CollapsibleTrigger asChild>
-              <CardHeader className="bg-mario-red bg-opacity-20 rounded-t-lg hover:bg-mario-red hover:bg-opacity-30 transition-colors cursor-pointer">
-                <CardTitle className="text-xl flex items-center justify-between font-mario text-mario-red">
-                  <div className="flex items-center gap-2">
-                    <Play size={20} />
-                    Recommended YouTube Videos 📺
-                    <span className="text-sm bg-mario-red text-white px-2 py-1 rounded-full font-mario-text">
-                      {skill.youtubeVideos.length}
-                    </span>
-                  </div>
-                  <ChevronDown 
-                    size={20} 
-                    className={`transition-transform duration-200 ${isVideosOpen ? 'rotate-180' : ''}`}
-                  />
-                </CardTitle>
-              </CardHeader>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <CardContent className="p-6">
-                <div className="grid gap-6 lg:grid-cols-1">
-                  {skill.youtubeVideos.map((video, index) => {
-                    const videoId = extractYouTubeId(video.url);
-                    return (
-                      <div key={index} className="border-2 border-mario-red rounded-lg p-4 hover:shadow-lg transition-shadow bg-white">
-                        <div className="space-y-4">
-                          <div className="flex items-start gap-3">
-                            <div className="bg-mario-red text-white rounded-lg p-3 shadow-md">
-                              <Play size={20} />
-                            </div>
-                            <div className="flex-1">
-                              <h5 className="font-medium text-gray-800 mb-2 font-mario-text">{video.title}</h5>
-                              <p className="text-sm text-gray-600 mb-3 font-mario-text">{video.description}</p>
-                            </div>
+          <CardHeader className="bg-mario-red bg-opacity-20 rounded-t-lg">
+            <CardTitle className="text-xl flex items-center gap-2 font-mario text-mario-red">
+              <Play size={20} />
+              Recommended YouTube Videos 📺
+              <span className="text-sm bg-mario-red text-white px-2 py-1 rounded-full font-mario-text">
+                {skill.youtubeVideos.length}
+              </span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="space-y-4">
+              {skill.youtubeVideos.map((video, index) => {
+                const videoId = extractYouTubeId(video.url);
+                const isOpen = openVideos[index] || false;
+                
+                return (
+                  <div key={index} className="border-2 border-mario-red rounded-lg bg-white">
+                    <button
+                      onClick={() => toggleVideo(index)}
+                      className="w-full p-4 text-left hover:bg-mario-red hover:bg-opacity-10 transition-colors rounded-lg"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-start gap-3">
+                          <div className="bg-mario-red text-white rounded-lg p-3 shadow-md">
+                            <Play size={20} />
                           </div>
-                          
-                          {videoId ? (
-                            <div className="aspect-video w-full">
-                              <iframe
-                                width="100%"
-                                height="100%"
-                                src={`https://www.youtube.com/embed/${videoId}`}
-                                title={video.title}
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen
-                                className="rounded-lg border-2 border-mario-black"
-                              ></iframe>
-                            </div>
-                          ) : (
-                            <div className="text-center p-4 bg-mario-red bg-opacity-10 rounded-lg">
-                              <p className="text-sm text-gray-600 font-mario-text mb-2">Unable to embed video</p>
-                              <a
-                                href={video.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-mario-red hover:text-mario-dark-red text-sm font-medium font-mario-text transition-colors"
-                              >
-                                Watch on YouTube
-                                <Play size={14} />
-                              </a>
-                            </div>
-                          )}
+                          <div className="flex-1">
+                            <h5 className="font-medium text-gray-800 mb-2 font-mario-text">{video.title}</h5>
+                            <p className="text-sm text-gray-600 font-mario-text">{video.description}</p>
+                          </div>
                         </div>
+                        <ChevronDown 
+                          size={20} 
+                          className={`text-mario-red transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                        />
                       </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </CollapsibleContent>
-          </Collapsible>
+                    </button>
+                    
+                    {isOpen && (
+                      <div className="p-4 border-t-2 border-mario-red">
+                        {videoId ? (
+                          <div className="aspect-video w-full">
+                            <iframe
+                              width="100%"
+                              height="100%"
+                              src={`https://www.youtube.com/embed/${videoId}`}
+                              title={video.title}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                              className="rounded-lg border-2 border-mario-black"
+                            ></iframe>
+                          </div>
+                        ) : (
+                          <div className="text-center p-4 bg-mario-red bg-opacity-10 rounded-lg">
+                            <p className="text-sm text-gray-600 font-mario-text mb-2">Unable to embed video</p>
+                            <a
+                              href={video.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-mario-red hover:text-mario-dark-red text-sm font-medium font-mario-text transition-colors"
+                            >
+                              Watch on YouTube
+                              <Play size={14} />
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
         </Card>
 
         {/* Articles Section */}
