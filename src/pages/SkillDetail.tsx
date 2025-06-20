@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -101,6 +102,13 @@ const SkillDetail = () => {
     };
     
     return badgeMap[skillTitle] || `${skillTitle} Expert`;
+  };
+
+  // Helper function to extract YouTube video ID from URL
+  const extractYouTubeId = (url: string): string => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : '';
   };
 
   return (
@@ -281,29 +289,53 @@ const SkillDetail = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-6">
-            <div className="grid gap-4 md:grid-cols-2">
-              {skill.youtubeVideos.map((video, index) => (
-                <div key={index} className="border-2 border-mario-red rounded-lg p-4 hover:shadow-lg transition-shadow bg-white hover:scale-105 duration-200">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-mario-red text-white rounded-lg p-3 shadow-md">
-                      <Play size={20} />
-                    </div>
-                    <div className="flex-1">
-                      <h5 className="font-medium text-gray-800 mb-2 font-mario-text">{video.title}</h5>
-                      <p className="text-sm text-gray-600 mb-3 font-mario-text">{video.description}</p>
-                      <a
-                        href={video.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-mario-red hover:text-mario-dark-red text-sm font-medium font-mario-text transition-colors"
-                      >
-                        Watch Video
-                        <Play size={14} />
-                      </a>
+            <div className="grid gap-6 lg:grid-cols-1">
+              {skill.youtubeVideos.map((video, index) => {
+                const videoId = extractYouTubeId(video.url);
+                return (
+                  <div key={index} className="border-2 border-mario-red rounded-lg p-4 hover:shadow-lg transition-shadow bg-white">
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="bg-mario-red text-white rounded-lg p-3 shadow-md">
+                          <Play size={20} />
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="font-medium text-gray-800 mb-2 font-mario-text">{video.title}</h5>
+                          <p className="text-sm text-gray-600 mb-3 font-mario-text">{video.description}</p>
+                        </div>
+                      </div>
+                      
+                      {videoId ? (
+                        <div className="aspect-video w-full">
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${videoId}`}
+                            title={video.title}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="rounded-lg border-2 border-mario-black"
+                          ></iframe>
+                        </div>
+                      ) : (
+                        <div className="text-center p-4 bg-mario-red bg-opacity-10 rounded-lg">
+                          <p className="text-sm text-gray-600 font-mario-text mb-2">Unable to embed video</p>
+                          <a
+                            href={video.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-mario-red hover:text-mario-dark-red text-sm font-medium font-mario-text transition-colors"
+                          >
+                            Watch on YouTube
+                            <Play size={14} />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </CardContent>
         </Card>
