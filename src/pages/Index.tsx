@@ -33,18 +33,18 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-mario-blue font-mario-text">
-      <div className="hero-section">
+    <div className="min-h-screen w-full bg-mario-blue font-mario-text">
+      <div className="hero-section w-full">
         <Hero />
       </div>
       
-      <div className="skill-categories">
+      <div className="skill-categories w-full">
         <SkillCategories />
       </div>
       
       {/* Mentor Mode Section */}
-      <div className="bg-mario-red py-12 border-t-8 border-mario-black mentor-section">
-        <div className="max-w-6xl mx-auto px-4 text-center">
+      <div className="bg-mario-red py-12 border-t-8 border-mario-black mentor-section w-full">
+        <div className="w-full px-4 text-center">
           <h3 className="text-3xl font-mario text-white mb-4 drop-shadow-lg">🎓 Ready to Share Your Skills? 🎓</h3>
           <p className="text-lg font-mario-text font-bold text-mario-white mb-6 max-w-2xl mx-auto">
             Join our mentor community and help others learn while earning rewards! 🌟
