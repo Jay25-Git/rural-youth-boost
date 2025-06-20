@@ -104,7 +104,8 @@ export const AnimatedMario = () => {
       >
         <div className="bg-mario-red p-4 rounded-full border-4 border-mario-black shadow-lg hover:shadow-xl">
           <div className={`text-4xl ${isMoving ? 'animate-bounce-mario' : ''}`}>
-            <img src="https://i.postimg.cc/kg5hLRfp/Whats-App-Image-2025-06-21-at-01-48-31-34fa336b.jpg"></img>
+            <img
+              src="https://i.postimg.cc/L68TsKLq/super-mario-bros-2.png"><img/>
           </div>
         </div>
         
