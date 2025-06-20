@@ -33,7 +33,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-mario-blue font-mario-text">
+    <div className="min-h-screen w-full bg-white font-mario-text">
       <div className="hero-section w-full">
         <Hero />
       </div>
