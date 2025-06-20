@@ -73,17 +73,17 @@ const MentorMode = () => {
             <div className="text-center">
               <div className="bg-mario-yellow text-mario-red w-12 h-12 rounded-full flex items-center justify-center font-mario text-xl mx-auto mb-4 border-4 border-mario-black">1</div>
               <h4 className="font-mario text-mario-blue mb-2">Apply to Mentor</h4>
-              <p className="font-mario-text font-bold text-sm">Submit your skills and experience</p>
+              <p className="font-mario-text font-bold text-sm text-mario-blue">Submit your skills and experience</p>
             </div>
             <div className="text-center">
               <div className="bg-mario-yellow text-mario-red w-12 h-12 rounded-full flex items-center justify-center font-mario text-xl mx-auto mb-4 border-4 border-mario-black">2</div>
               <h4 className="font-mario text-mario-blue mb-2">Create Content</h4>
-              <p className="font-mario-text font-bold text-sm">Design courses and challenges</p>
+              <p className="font-mario-text font-bold text-sm text-mario-blue">Design courses and challenges</p>
             </div>
             <div className="text-center">
               <div className="bg-mario-yellow text-mario-red w-12 h-12 rounded-full flex items-center justify-center font-mario text-xl mx-auto mb-4 border-4 border-mario-black">3</div>
               <h4 className="font-mario text-mario-blue mb-2">Help & Earn</h4>
-              <p className="font-mario-text font-bold text-sm">Guide students and earn rewards</p>
+              <p className="font-mario-text font-bold text-sm text-mario-blue">Guide students and earn rewards</p>
             </div>
           </div>
         </div>
