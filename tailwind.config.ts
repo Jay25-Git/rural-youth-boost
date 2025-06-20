@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,16 +19,20 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'mario': ['Fredoka One', 'cursive'],
-				'mario-text': ['Nunito', 'sans-serif'],
+				'mario': ['Press Start 2P', 'monospace'],
+				'mario-text': ['Orbitron', 'monospace'],
 			},
 			colors: {
-				'mario-red': '#FF6B6B',
-				'mario-blue': '#4ECDC4',
-				'mario-yellow': '#FFE66D',
-				'mario-green': '#95E1D3',
-				'mario-orange': '#FFA726',
-				'mario-purple': '#BA68C8',
+				'mario-red': '#DC2626',
+				'mario-blue': '#1D4ED8',
+				'mario-white': '#FFFFFF',
+				'mario-dark-red': '#B91C1C',
+				'mario-dark-blue': '#1E40AF',
+				'mario-light-blue': '#3B82F6',
+				'mario-yellow': '#FCD34D',
+				'mario-green': '#10B981',
+				'mario-orange': '#F97316',
+				'mario-purple': '#8B5CF6',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
