@@ -2,8 +2,11 @@
 import React from 'react';
 import { Star, Zap, Trophy } from 'lucide-react';
 import { AuthButton } from './AuthButton';
+import { useProfile } from '@/hooks/useProfile';
 
 export const Hero = () => {
+  const { getDisplayName } = useProfile();
+
   return (
     <div className="relative overflow-hidden bg-mario-red text-white py-16 border-b-8 border-mario-black">
       {/* Floating Mario elements */}
@@ -24,10 +27,10 @@ export const Hero = () => {
           <h1 className="text-5xl font-mario text-shadow-lg">SkillSynq+</h1>
         </div>
         <p className="text-xl mb-4 max-w-2xl mx-auto font-mario-text font-bold">
-          🎮 LEVEL UP YOUR SKILLS! 🎮
+          🎮 WELCOME BACK, {getDisplayName().toUpperCase()}! 🎮
         </p>
         <p className="text-lg max-w-xl mx-auto font-mario-text font-bold">
-          JOIN MARIO ON AN EPIC QUEST TO MASTER SKILLS!
+          CONTINUE YOUR EPIC QUEST TO MASTER SKILLS!
         </p>
         <div className="flex justify-center gap-8 mt-8 flex-wrap">
           <div className="flex items-center gap-2 bg-mario-white text-mario-red px-4 py-2 rounded-lg border-4 border-mario-black font-mario-text font-bold">
