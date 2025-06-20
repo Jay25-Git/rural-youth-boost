@@ -5,7 +5,7 @@ import { SkillCategories } from '../components/SkillCategories';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-mario-blue via-mario-green to-mario-yellow font-mario-text">
       <Hero />
       <SkillCategories />
     </div>

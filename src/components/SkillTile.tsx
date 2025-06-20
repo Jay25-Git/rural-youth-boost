@@ -25,39 +25,39 @@ interface SkillTileProps {
 export const SkillTile: React.FC<SkillTileProps> = ({ skill, accentColor }) => {
   const getAccentClasses = (color: string) => {
     const colorMap = {
-      blue: 'border-blue-500 hover:border-blue-600',
-      green: 'border-green-500 hover:border-green-600',
-      purple: 'border-purple-500 hover:border-purple-600',
+      red: 'border-mario-red hover:border-mario-orange',
+      green: 'border-mario-green hover:border-mario-blue',
+      purple: 'border-mario-purple hover:border-mario-yellow',
     };
-    return colorMap[color as keyof typeof colorMap] || colorMap.blue;
+    return colorMap[color as keyof typeof colorMap] || colorMap.red;
   };
 
   const getButtonClasses = (color: string) => {
     const colorMap = {
-      blue: 'bg-blue-500 hover:bg-blue-600',
-      green: 'bg-green-500 hover:bg-green-600',
-      purple: 'bg-purple-500 hover:bg-purple-600',
+      red: 'bg-mario-red hover:bg-mario-orange',
+      green: 'bg-mario-green hover:bg-mario-blue',
+      purple: 'bg-mario-purple hover:bg-mario-yellow',
     };
-    return colorMap[color as keyof typeof colorMap] || colorMap.blue;
+    return colorMap[color as keyof typeof colorMap] || colorMap.red;
   };
 
   return (
-    <Card className={`h-full transition-all duration-300 hover:shadow-lg border-l-4 ${getAccentClasses(accentColor)}`}>
+    <Card className={`h-full transition-all duration-300 hover:shadow-2xl hover:scale-105 border-l-4 ${getAccentClasses(accentColor)} bg-white rounded-2xl shadow-lg border-2 border-gray-200`}>
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-semibold text-gray-800">
+        <CardTitle className="text-lg font-mario text-gray-800">
           {skill.title}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-gray-600 leading-relaxed font-mario-text">
           {skill.description}
         </p>
         
         <Link to={`/skill/${skill.id}`} className="block">
           <Button 
-            className={`w-full ${getButtonClasses(accentColor)} text-white`}
+            className={`w-full ${getButtonClasses(accentColor)} text-white font-mario-text font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300`}
           >
-            Learn More
+            🎮 Start Adventure
             <ArrowRight size={16} className="ml-2" />
           </Button>
         </Link>

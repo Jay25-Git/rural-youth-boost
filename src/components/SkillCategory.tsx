@@ -34,14 +34,14 @@ export const SkillCategory: React.FC<SkillCategoryProps> = ({
 }) => {
   return (
     <div className="space-y-6">
-      <div className={`bg-gradient-to-r ${bgColor} text-white p-6 rounded-xl shadow-lg`}>
+      <div className={`bg-gradient-to-r ${bgColor} text-white p-6 rounded-2xl shadow-xl border-4 border-white`}>
         <div className="flex items-center gap-4 mb-3">
-          <div className="bg-white bg-opacity-20 p-3 rounded-full">
+          <div className="bg-white bg-opacity-30 p-3 rounded-full shadow-lg">
             <Icon size={28} />
           </div>
-          <h3 className="text-2xl font-bold">{title}</h3>
+          <h3 className="text-2xl font-mario">{title}</h3>
         </div>
-        <p className="text-lg opacity-90">{description}</p>
+        <p className="text-lg opacity-95 font-mario-text font-semibold">{description}</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

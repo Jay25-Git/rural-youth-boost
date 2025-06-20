@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,7 +19,17 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'mario': ['Fredoka One', 'cursive'],
+				'mario-text': ['Nunito', 'sans-serif'],
+			},
 			colors: {
+				'mario-red': '#FF6B6B',
+				'mario-blue': '#4ECDC4',
+				'mario-yellow': '#FFE66D',
+				'mario-green': '#95E1D3',
+				'mario-orange': '#FFA726',
+				'mario-purple': '#BA68C8',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -84,11 +95,23 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'bounce-mario': {
+					'0%, 20%, 50%, 80%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'40%': {
+						transform: 'translateY(-10px)'
+					},
+					'60%': {
+						transform: 'translateY(-5px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'bounce-mario': 'bounce-mario 1s ease-in-out infinite'
 			}
 		}
 	},

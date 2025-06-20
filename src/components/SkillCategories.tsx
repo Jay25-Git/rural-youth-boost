@@ -8,37 +8,37 @@ export const SkillCategories = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">Choose Your Learning Path</h2>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Start with any skill that interests you. Each lesson is designed to be simple and helpful.
+        <h2 className="text-4xl font-mario text-mario-red mb-4">🌟 Choose Your Power-Up Path! 🌟</h2>
+        <p className="text-xl text-gray-700 max-w-2xl mx-auto font-mario-text font-semibold">
+          Each skill is a new adventure waiting for you! Pick your world and start collecting skill coins! 🪙
         </p>
       </div>
       
       <div className="space-y-16">
         <SkillCategory
-          title="Career Skills"
-          description="Build skills that will help you get a good job and succeed at work"
+          title="🔧 Career Power-Ups"
+          description="Master these skills to unlock career achievements and boss-level success! 💼✨"
           icon={Briefcase}
           skills={careerSkills}
-          bgColor="from-blue-500 to-blue-600"
-          accentColor="blue"
+          bgColor="from-mario-red to-mario-orange"
+          accentColor="red"
         />
         
         <SkillCategory
-          title="Life Skills"
-          description="Learn important skills for everyday life and personal growth"
+          title="💚 Life Skill Coins"
+          description="Essential life skills to help you navigate the real world like a true hero! 🏠🌱"
           icon={Heart}
           skills={lifeSkills}
-          bgColor="from-green-500 to-green-600"
+          bgColor="from-mario-green to-mario-blue"
           accentColor="green"
         />
         
         <SkillCategory
-          title="Hobby Skills"
-          description="Explore fun activities and creative skills for your free time"
+          title="🎨 Creative Star World"
+          description="Explore fun and creative skills that make life more colorful and exciting! 🎭🎪"
           icon={Camera}
           skills={hobbySkills}
-          bgColor="from-purple-500 to-purple-600"
+          bgColor="from-mario-purple to-mario-yellow"
           accentColor="purple"
         />
       </div>
