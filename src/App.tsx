@@ -38,7 +38,7 @@ const App = () => (
               <Route path="/community" element={<Community />} />
               <Route path="/" element={<Navigate to="/auth" replace />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="/sharestory" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </AuthProvider>
