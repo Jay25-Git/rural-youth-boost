@@ -12,7 +12,7 @@ import { Users, HelpCircle } from 'lucide-react';
 const Index = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { isOpen, hasSeenTutorial, startTutorial, closeTutorial } = useTutorial();
+  const { isOpen, hasSeenTutorial, startTutorial, closeTutorial, isNewUser } = useTutorial();
 
   useEffect(() => {
     if (!user) {
@@ -21,11 +21,11 @@ const Index = () => {
   }, [user, navigate]);
 
   useEffect(() => {
-    // Auto-start tutorial for new users
-    if (user && !hasSeenTutorial) {
+    // Auto-start tutorial only for brand new users who haven't seen it before
+    if (user && !hasSeenTutorial && isNewUser()) {
       setTimeout(() => startTutorial(), 1000);
     }
-  }, [user, hasSeenTutorial, startTutorial]);
+  }, [user, hasSeenTutorial, startTutorial, isNewUser]);
 
   // Don't render anything if user is not authenticated
   if (!user) {

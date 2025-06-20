@@ -21,6 +21,8 @@ export const useTutorial = () => {
     setIsOpen(false);
     localStorage.setItem('skillsynq-tutorial-seen', 'true');
     setHasSeenTutorial(true);
+    // Clear the new user flag after tutorial is completed
+    localStorage.removeItem('skillsynq-new-user');
   };
 
   const resetTutorial = () => {
@@ -28,11 +30,16 @@ export const useTutorial = () => {
     setHasSeenTutorial(false);
   };
 
+  const isNewUser = () => {
+    return localStorage.getItem('skillsynq-new-user') === 'true';
+  };
+
   return {
     isOpen,
     hasSeenTutorial,
     startTutorial,
     closeTutorial,
-    resetTutorial
+    resetTutorial,
+    isNewUser
   };
 };

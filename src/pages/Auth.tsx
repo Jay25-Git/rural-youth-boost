@@ -76,6 +76,9 @@ const Auth = () => {
 
       if (error) throw error;
       
+      // Mark user as new for tutorial purposes
+      localStorage.setItem('skillsynq-new-user', 'true');
+      
       setError('Please check your email for a confirmation link!');
     } catch (error: any) {
       setError(error.message);

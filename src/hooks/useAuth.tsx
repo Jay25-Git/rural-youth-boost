@@ -21,6 +21,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
+        
+        // If user is signing in for the first time (new user), the flag will already be set
+        // If user is signing in as existing user, make sure new user flag is cleared
+        if (event === 'SIGNED_IN' && session?.user) {
+          // Only clear if this is NOT a new signup (signup sets the flag)
+          const isNewUser = localStorage.getItem('skillsynq-new-user') === 'true';
+          if (!isNewUser) {
+            localStorage.removeItem('skillsynq-new-user');
+          }
+        }
       }
     );
 
@@ -35,6 +45,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     try {
+      // Clear new user flag on sign out
+      localStorage.removeItem('skillsynq-new-user');
       await supabase.auth.signOut();
       window.location.href = '/auth';
     } catch (error) {
