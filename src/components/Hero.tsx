@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { Star, Zap, Trophy } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 import { AuthButton } from './AuthButton';
 import { useProfile } from '@/hooks/useProfile';
 
@@ -29,9 +31,20 @@ export const Hero = () => {
         <p className="text-xl mb-4 max-w-2xl mx-auto font-mario-text font-bold">
           🎮 WELCOME BACK, {getDisplayName().toUpperCase()}! 🎮
         </p>
-        <p className="text-lg max-w-xl mx-auto font-mario-text font-bold">
+        <p className="text-lg max-w-xl mx-auto font-mario-text font-bold mb-6">
           CONTINUE YOUR EPIC QUEST TO MASTER SKILLS!
         </p>
+        
+        {/* View Achievements Button */}
+        <div className="mb-8">
+          <Link to="/collected">
+            <Button className="bg-mario-yellow hover:bg-mario-orange text-mario-red font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
+              <Star size={20} className="mr-2" />
+              VIEW YOUR ACHIEVEMENTS 🏆
+            </Button>
+          </Link>
+        </div>
+        
         <div className="flex justify-center gap-8 mt-8 flex-wrap">
           <div className="flex items-center gap-2 bg-mario-white text-mario-red px-4 py-2 rounded-lg border-4 border-mario-black font-mario-text font-bold">
             <Zap className="text-mario-blue" size={24} />

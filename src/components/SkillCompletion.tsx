@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, Award, CheckCircle, Sparkles } from 'lucide-react';
+import { CheckCircle, Award, Star } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface SkillCompletionProps {
@@ -27,6 +28,7 @@ export const SkillCompletion: React.FC<SkillCompletionProps> = ({
   const [stars, setStars] = useState(0);
   const [badges, setBadges] = useState<string[]>([]);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Load completion status from localStorage
@@ -95,57 +97,18 @@ export const SkillCompletion: React.FC<SkillCompletionProps> = ({
                   {badgeName}
                 </Badge>
               </div>
-              <p className="text-sm text-gray-600 font-mario-text">
+              <p className="text-sm text-gray-600 font-mario-text mb-4">
                 🌟 Great job! You've mastered this skill! 🌟
               </p>
+              <Button
+                onClick={() => navigate('/collected')}
+                className="bg-mario-purple hover:bg-mario-purple text-white font-mario-text font-bold shadow-lg hover:scale-105 transition-transform duration-200"
+              >
+                <Star size={20} className="mr-2" />
+                VIEW ALL ACHIEVEMENTS
+              </Button>
             </div>
           )}
-        </CardContent>
-      </Card>
-
-      {/* Collected Stars and Badges */}
-      <Card className="border-4 border-mario-purple shadow-lg">
-        <CardHeader className="bg-mario-purple bg-opacity-20 rounded-t-lg">
-          <CardTitle className="text-xl flex items-center gap-2 font-mario text-mario-purple">
-            <Sparkles size={20} />
-            Collected Stars & Badges ✨
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-6">
-          <div className="space-y-4">
-            {/* Stars Section */}
-            <div className="flex items-center gap-3 p-4 bg-mario-yellow bg-opacity-20 rounded-lg border-2 border-mario-yellow">
-              <Star size={24} className="text-mario-yellow" />
-              <div>
-                <h4 className="font-mario-text font-bold text-mario-red">Total Stars</h4>
-                <p className="text-2xl font-mario text-mario-blue">{stars} ⭐</p>
-              </div>
-            </div>
-
-            {/* Badges Section */}
-            <div className="space-y-3">
-              <h4 className="font-mario-text font-bold text-mario-red flex items-center gap-2">
-                <Award size={20} />
-                Earned Badges
-              </h4>
-              {badges.length > 0 ? (
-                <div className="flex flex-wrap gap-2">
-                  {badges.map((badge, index) => (
-                    <Badge 
-                      key={index}
-                      className="bg-mario-blue text-white font-mario-text font-bold border-2 border-mario-black"
-                    >
-                      🏅 {badge}
-                    </Badge>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-gray-600 font-mario-text italic">
-                  Complete skills to start earning badges! 🎯
-                </p>
-              )}
-            </div>
-          </div>
         </CardContent>
       </Card>
     </div>
