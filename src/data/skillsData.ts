@@ -40,14 +40,14 @@ export const careerSkills = [
     ],
     articles: [
       {
-        title: 'The Ultimate Resume Writing Guide',
+        title: 'How to Write a Resume - Complete Guide',
         description: 'Comprehensive guide covering everything from formatting to content optimization.',
         url: 'https://www.indeed.com/career-advice/resumes-cover-letters/how-to-make-a-resume'
       },
       {
-        title: 'Resume Mistakes to Avoid',
-        description: 'Common resume errors that can cost you job opportunities and how to fix them.',
-        url: 'https://www.thebalancecareers.com/top-resume-mistakes-2063319'
+        title: 'Resume Writing Guide',
+        description: 'Step-by-step instructions for creating an effective resume.',
+        url: 'https://www.glassdoor.com/blog/guide/how-to-write-a-resume/'
       }
     ]
   },
@@ -92,14 +92,14 @@ export const careerSkills = [
     ],
     articles: [
       {
-        title: 'How to Prepare for Any Job Interview',
+        title: 'Job Interview Preparation Guide',
         description: 'Complete preparation checklist and strategies for interview success.',
-        url: 'https://www.harvard.edu/career-services/interview-preparation/'
+        url: 'https://www.indeed.com/career-advice/interviewing/job-interview-tips-how-to-make-a-great-impression'
       },
       {
-        title: 'Body Language Tips for Interviews',
-        description: 'Learn how to use nonverbal communication to make a great impression.',
-        url: 'https://www.themuse.com/advice/body-language-tips-for-job-interviews'
+        title: 'Interview Questions and Answers',
+        description: 'Common interview questions with sample answers and tips.',
+        url: 'https://www.glassdoor.com/blog/common-interview-questions/'
       }
     ]
   },
@@ -144,14 +144,14 @@ export const careerSkills = [
     ],
     articles: [
       {
-        title: 'The Art of Effective Communication',
+        title: 'Effective Communication in the Workplace',
         description: 'Master the fundamentals of clear, persuasive communication in any setting.',
-        url: 'https://www.mindtools.com/pages/article/newCS_99.htm'
+        url: 'https://www.indeed.com/career-advice/career-development/communication-skills'
       },
       {
-        title: 'Building Better Workplace Relationships',
+        title: 'Workplace Communication Tips',
         description: 'Strategies for improving communication and collaboration with colleagues.',
-        url: 'https://www.forbes.com/sites/forbescoachescouncil/2019/01/15/15-ways-to-improve-communication-in-the-workplace/'
+        url: 'https://www.glassdoor.com/blog/guide/workplace-communication/'
       }
     ]
   },
@@ -196,14 +196,14 @@ export const careerSkills = [
     ],
     articles: [
       {
-        title: 'Essential Computer Skills for the Modern Workplace',
+        title: 'Basic Computer Skills for Beginners',
         description: 'A comprehensive guide to the digital skills every professional needs.',
         url: 'https://www.indeed.com/career-advice/career-development/computer-skills'
       },
       {
-        title: 'Improve Your Typing Speed and Accuracy',
-        description: 'Tips and techniques to become a faster, more accurate typist.',
-        url: 'https://www.typing.com/blog/typing-tips-for-beginners'
+        title: 'Essential Computer Skills',
+        description: 'Tips and techniques to improve your computer literacy.',
+        url: 'https://www.coursera.org/articles/computer-skills'
       }
     ]
   },
@@ -248,14 +248,14 @@ export const careerSkills = [
     ],
     articles: [
       {
-        title: 'The Five Dysfunctions of a Team',
-        description: 'Understanding common team problems and how to overcome them.',
-        url: 'https://www.tablegroup.com/five-dysfunctions/'
+        title: 'Teamwork Skills Guide',
+        description: 'Understanding how to work effectively in collaborative environments.',
+        url: 'https://www.indeed.com/career-advice/career-development/teamwork-skills'
       },
       {
-        title: 'Collaborative Leadership in Teams',
+        title: 'Building Strong Teams',
         description: 'How to lead and participate effectively in collaborative environments.',
-        url: 'https://hbr.org/2021/07/collaborative-leadership-lessons-from-the-world-of-sports'
+        url: 'https://www.glassdoor.com/blog/guide/teamwork-skills/'
       }
     ]
   },
@@ -300,14 +300,14 @@ export const careerSkills = [
     ],
     articles: [
       {
-        title: 'The Psychology of Customer Service',
+        title: 'Customer Service Skills',
         description: 'Understanding customer behavior and how to respond effectively.',
-        url: 'https://blog.hubspot.com/service/psychology-of-customer-service'
+        url: 'https://www.indeed.com/career-advice/career-development/customer-service-skills'
       },
       {
-        title: 'Building Customer Loyalty Through Service',
+        title: 'Customer Service Best Practices',
         description: 'How exceptional service creates lasting customer relationships.',
-        url: 'https://www.salesforce.com/resources/articles/customer-service/'
+        url: 'https://www.zendesk.com/blog/customer-service-skills/'
       }
     ]
   }
@@ -355,14 +355,14 @@ export const lifeSkills = [
     ],
     articles: [
       {
-        title: 'The Science of Productivity',
+        title: 'Time Management Strategies',
         description: 'Research-backed strategies for getting more done in less time.',
-        url: 'https://www.scientificamerican.com/article/the-science-of-productivity/'
+        url: 'https://www.indeed.com/career-advice/career-development/time-management-skills'
       },
       {
-        title: 'Deep Work vs. Shallow Work',
+        title: 'Productivity Tips',
         description: 'Understanding the difference and how to prioritize meaningful tasks.',
-        url: 'https://blog.doist.com/deep-work/'
+        url: 'https://www.mindtools.com/pages/article/newHTE_00.htm'
       }
     ]
   },
@@ -407,14 +407,14 @@ export const lifeSkills = [
     ],
     articles: [
       {
-        title: 'Personal Finance 101',
+        title: 'Personal Finance Basics',
         description: 'Complete guide to managing your money from budgeting to investing.',
-        url: 'https://www.nerdwallet.com/article/finance/personal-finance-101'
+        url: 'https://www.investopedia.com/personal-finance-4427760'
       },
       {
-        title: 'Emergency Fund Basics',
-        description: 'Why you need an emergency fund and how to build one.',
-        url: 'https://www.investopedia.com/articles/personal-finance/040715/how-much-you-should-have-your-emergency-fund.asp'
+        title: 'Budgeting 101',
+        description: 'Why you need a budget and how to build one.',
+        url: 'https://www.mint.com/budgeting'
       }
     ]
   },
@@ -459,14 +459,14 @@ export const lifeSkills = [
     ],
     articles: [
       {
-        title: 'The Blue Zones Lifestyle',
-        description: 'Lessons from the world\'s longest-living populations.',
-        url: 'https://www.bluezones.com/2016/11/power-9/'
+        title: 'Healthy Living Tips',
+        description: 'Lessons from health experts on living a healthier life.',
+        url: 'https://www.cdc.gov/healthyliving/index.html'
       },
       {
-        title: 'Building Sustainable Healthy Habits',
+        title: 'Building Healthy Habits',
         description: 'How to make lasting changes to your lifestyle.',
-        url: 'https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/healthy-habits/art-20049121'
+        url: 'https://www.healthline.com/health/fitness/how-to-start-exercising'
       }
     ]
   },
@@ -511,14 +511,14 @@ export const lifeSkills = [
     ],
     articles: [
       {
-        title: 'The Problem-Solving Process',
+        title: 'Problem Solving Skills',
         description: 'A step-by-step guide to tackling any challenge effectively.',
-        url: 'https://www.mindtools.com/pages/article/newTMC_00.htm'
+        url: 'https://www.indeed.com/career-advice/career-development/problem-solving-skills'
       },
       {
-        title: 'Design Thinking for Problem Solving',
+        title: 'Critical Thinking Guide',
         description: 'Using creative approaches to find innovative solutions.',
-        url: 'https://www.ideou.com/blogs/inspiration/what-is-design-thinking'
+        url: 'https://www.coursera.org/articles/critical-thinking-skills'
       }
     ]
   },
@@ -563,14 +563,14 @@ export const lifeSkills = [
     ],
     articles: [
       {
-        title: 'Understanding Stress and How to Manage It',
+        title: 'Stress Management Tips',
         description: 'Comprehensive guide to stress, its effects, and proven management strategies.',
-        url: 'https://www.apa.org/topics/stress'
+        url: 'https://www.mayoclinic.org/healthy-lifestyle/stress-management/basics/stress-basics/hlv-20049495'
       },
       {
-        title: 'Mindfulness and Stress Reduction',
+        title: 'Mindfulness for Stress',
         description: 'How mindfulness practices can help you manage stress and anxiety.',
-        url: 'https://www.mindful.org/mindfulness-how-to-do-it/'
+        url: 'https://www.headspace.com/meditation/stress'
       }
     ]
   },
@@ -615,12 +615,12 @@ export const lifeSkills = [
     ],
     articles: [
       {
-        title: 'The Psychology of Goal Achievement',
+        title: 'SMART Goals Guide',
         description: 'Scientific insights into what makes people successful at reaching their goals.',
-        url: 'https://www.psychologytoday.com/us/blog/the-science-success/201101/the-psychology-goal-achievement'
+        url: 'https://www.indeed.com/career-advice/career-development/smart-goals'
       },
       {
-        title: 'Creating an Action Plan for Your Goals',
+        title: 'Goal Setting Tips',
         description: 'Step-by-step guide to turning your dreams into actionable plans.',
         url: 'https://www.mindtools.com/pages/article/newHTE_06.htm'
       }
@@ -670,14 +670,14 @@ export const hobbySkills = [
     ],
     articles: [
       {
-        title: 'Composition Techniques for Better Photos',
+        title: 'Photography Basics',
         description: 'Master the art of composing compelling photographs.',
-        url: 'https://digital-photography-school.com/20-composition-techniques-that-will-improve-your-photos/'
+        url: 'https://www.adobe.com/creativecloud/photography/discover/photography-basics.html'
       },
       {
-        title: 'Understanding Camera Settings',
-        description: 'Learn about aperture, shutter speed, and ISO for manual photography.',
-        url: 'https://www.photography-course.net/camera-basics/'
+        title: 'Phone Photography Tips',
+        description: 'Learn about camera settings and techniques for better mobile photography.',
+        url: 'https://blog.adobe.com/en/publish/2021/07/29/mobile-photography-tips'
       }
     ]
   },
@@ -722,14 +722,14 @@ export const hobbySkills = [
     ],
     articles: [
       {
-        title: 'Essential Kitchen Equipment for Beginners',
+        title: 'Cooking Basics for Beginners',
         description: 'What you really need to start cooking at home.',
-        url: 'https://www.seriouseats.com/essential-kitchen-equipment-guide'
+        url: 'https://www.allrecipes.com/article/cooking-basics/'
       },
       {
-        title: 'Food Safety and Kitchen Hygiene',
+        title: 'Kitchen Safety Tips',
         description: 'Important guidelines for safe and healthy cooking practices.',
-        url: 'https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling'
+        url: 'https://www.foodsafety.gov/keep-food-safe/4-steps-to-food-safety'
       }
     ]
   },
@@ -774,14 +774,14 @@ export const hobbySkills = [
     ],
     articles: [
       {
-        title: 'Starting Your First Vegetable Garden',
+        title: 'Beginner Gardening Guide',
         description: 'Complete guide to growing your own food at home.',
-        url: 'https://www.almanac.com/vegetable-gardening-for-beginners'
+        url: 'https://www.bhg.com/gardening/vegetable/vegetables/beginner-vegetable-garden-tips/'
       },
       {
-        title: 'Soil Health and Composting',
-        description: 'Understanding soil composition and creating nutrient-rich compost.',
-        url: 'https://www.epa.gov/recycle/composting-home'
+        title: 'Container Gardening',
+        description: 'Understanding how to garden in small spaces and containers.',
+        url: 'https://www.gardeningknowhow.com/garden-how-to/container-gardening/container-gardening-tips.htm'
       }
     ]
   },
@@ -826,9 +826,9 @@ export const hobbySkills = [
     ],
     articles: [
       {
-        title: 'The Benefits of Learning Music',
+        title: 'Benefits of Learning Music',
         description: 'How musical training enhances cognitive function and wellbeing.',
-        url: 'https://www.psychologytoday.com/us/blog/the-athletes-way/201310/the-neuroscience-music-mindset-and-motivation'
+        url: 'https://www.masterclasspiano.com/benefits-of-learning-music/'
       },
       {
         title: 'Choosing Your First Instrument',
@@ -878,14 +878,14 @@ export const hobbySkills = [
     ],
     articles: [
       {
-        title: 'The Therapeutic Benefits of Crafting',
+        title: 'Benefits of Arts and Crafts',
         description: 'How creative activities improve mental health and wellbeing.',
-        url: 'https://www.health.harvard.edu/blog/the-health-benefits-of-hobbies-2016051910581'
+        url: 'https://www.verywellmind.com/the-benefits-of-art-therapy-4688715'
       },
       {
-        title: 'Setting Up Your Craft Space',
+        title: 'DIY Craft Ideas',
         description: 'Tips for creating an organized and inspiring workspace for your projects.',
-        url: 'https://www.thesprucecrafts.com/setting-up-craft-room-1252477'
+        url: 'https://www.goodhousekeeping.com/home/craft-ideas/'
       }
     ]
   },
@@ -935,9 +935,9 @@ export const hobbySkills = [
         url: 'https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise/art-20048389'
       },
       {
-        title: 'The Social Benefits of Team Sports',
+        title: 'Benefits of Sports',
         description: 'How participating in sports builds relationships and life skills.',
-        url: 'https://www.verywellfit.com/benefits-of-team-sports-3120855'
+        url: 'https://www.healthline.com/health/fitness/benefits-of-sports'
       }
     ]
   }
