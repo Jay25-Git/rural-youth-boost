@@ -26,7 +26,7 @@ export const Hero = () => {
       </div>
       
       {/* Auth button in top right */}
-      <div className="absolute top-6 right-6 z-10">
+      <div className="absolute top-6 right-6 z-10" data-tutorial="auth-button">
         <AuthButton />
       </div>
       
@@ -46,7 +46,7 @@ export const Hero = () => {
         
         {/* Action Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <Link to="/collected">
+          <Link to="/collected" data-tutorial="achievements-button">
             <Button className="bg-mario-yellow hover:bg-mario-orange text-mario-red font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
               <Star size={20} className="mr-2" />
               {t('viewAchievements')} 🏆
