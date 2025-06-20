@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Star, Zap, Trophy } from 'lucide-react';
 
@@ -15,7 +14,7 @@ export const Hero = () => {
           <div className="bg-mario-white text-mario-red p-3 rounded-lg shadow-lg border-4 border-mario-black">
             <Trophy size={32} />
           </div>
-          <h1 className="text-5xl font-mario text-shadow-lg">MARIO SKILLSYNC+</h1>
+          <h1 className="text-5xl font-mario text-shadow-lg">SKILLSYNQ+</h1>
         </div>
         <p className="text-xl mb-4 max-w-2xl mx-auto font-mario-text font-bold">
           🎮 LEVEL UP YOUR SKILLS! 🎮
