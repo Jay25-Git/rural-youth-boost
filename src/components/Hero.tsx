@@ -20,9 +20,13 @@ export const Hero = () => {
       <div className="absolute top-8 right-8 text-mario-white text-3xl animate-bounce-mario" style={{animationDelay: '0.5s'}}>⭐</div>
       <div className="absolute bottom-4 left-1/4 text-mario-yellow text-2xl animate-bounce-mario" style={{animationDelay: '1s'}}>🎯</div>
       
-      {/* Language selector and Auth button in top right */}
-      <div className="absolute top-6 right-6 z-10 flex items-center gap-3">
+      {/* Language selector in top left */}
+      <div className="absolute top-6 left-6 z-10">
         <LanguageSelector />
+      </div>
+      
+      {/* Auth button in top right */}
+      <div className="absolute top-6 right-6 z-10">
         <AuthButton />
       </div>
       
