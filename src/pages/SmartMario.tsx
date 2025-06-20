@@ -9,6 +9,7 @@ import { Send, Home, Bot, User } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useProfile } from '@/hooks/useProfile';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Message {
   id: string;
@@ -44,41 +45,6 @@ const SmartMario = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const generateMarioResponse = (userMessage: string): string => {
-    const responses = [
-      "🍄 Mamma mia! That's a great question! Let me think... Based on my experience in the Mushroom Kingdom and beyond, here's what I know about that!",
-      "🌟 Wahoo! I love helping with questions like this! You know, Princess Peach always says that learning is the greatest power-up of all!",
-      "⭐ Super! That reminds me of my adventures through different worlds. Here's what I've learned that might help you:",
-      "🎮 Let's-a go! That's exactly the kind of curiosity that makes a true hero! From my experience jumping through levels of knowledge:",
-      "🏆 Excellent question, my friend! Luigi and I have faced many challenges, and here's what we've discovered:",
-      "🔥 Fire Flower power activated! I'm ready to help you with that. In all my quests, I've learned that:",
-      "🎯 Bullseye! That's a question worth 1000 coins! Let me share some wisdom from the Super Mario knowledge database:"
-    ];
-
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-    
-    // Simple keyword-based responses for demonstration
-    const lowerMessage = userMessage.toLowerCase();
-    
-    if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
-      return "🍄 Hello there, brave adventurer! It's-a me, Smart Mario! Ready for some super knowledge quests? What would you like to learn about today?";
-    }
-    
-    if (lowerMessage.includes('thank')) {
-      return "🌟 You're welcome! Remember, helping others is what makes a true hero! Keep learning and growing, just like collecting power-ups! Wahoo!";
-    }
-    
-    if (lowerMessage.includes('skill') || lowerMessage.includes('learn')) {
-      return "🎮 Learning new skills is like collecting power-ups! Each skill you master makes you stronger and opens up new worlds of possibility! What skill adventure would you like to embark on?";
-    }
-    
-    if (lowerMessage.includes('help')) {
-      return "🏆 Of course I'll help you! That's what I'm here for! Just like how I help save Princess Peach, I'm here to help save you from confusion! What do you need assistance with?";
-    }
-    
-    return `${randomResponse} While I'd love to give you a detailed answer, remember that I'm still learning too! For the most accurate information, consider checking reliable sources or asking specific experts in that field. But I'm always here to encourage your curiosity! 🍄`;
-  };
-
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
 
@@ -90,21 +56,52 @@ const SmartMario = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentMessage = inputText;
     setInputText('');
     setIsLoading(true);
 
-    // Simulate AI thinking time
-    setTimeout(() => {
+    try {
+      console.log('Sending message to Smart Mario:', currentMessage);
+      
+      const { data, error } = await supabase.functions.invoke('smart-mario-chat', {
+        body: { message: currentMessage }
+      });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
+
+      console.log('Received response from Smart Mario:', data);
+
       const marioResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: generateMarioResponse(inputText),
+        text: data.reply || "🍄 Mamma mia! I had trouble understanding that. Could you try asking again?",
         sender: 'mario',
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, marioResponse]);
+    } catch (error) {
+      console.error('Error calling Smart Mario:', error);
+      
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "🍄 Mamma mia! I'm having trouble connecting to my brain right now. Please try again in a moment! 🌟",
+        sender: 'mario',
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+      
+      toast({
+        title: "Connection Error",
+        description: "Smart Mario is having trouble right now. Please try again!",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-    }, 1000 + Math.random() * 2000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -172,7 +169,7 @@ const SmartMario = () => {
                   : 'bg-mario-white text-mario-black'
               }`}>
                 <CardContent className="p-3">
-                  <p className="font-mario-text font-bold text-sm leading-relaxed">
+                  <p className="font-mario-text font-bold text-sm leading-relaxed whitespace-pre-wrap">
                     {message.text}
                   </p>
                   <p className="text-xs opacity-70 mt-2">
