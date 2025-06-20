@@ -1,13 +1,14 @@
 
 import React from 'react';
-import { Star, Zap, Trophy, Bot } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Star, Zap, Trophy } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { AuthButton } from './AuthButton';
 import { useProfile } from '@/hooks/useProfile';
 
 export const Hero = () => {
   const { getDisplayName } = useProfile();
+  const navigate = useNavigate();
 
   return (
     <div className="relative overflow-hidden bg-mario-red text-white py-16 border-b-8 border-mario-black">
@@ -43,13 +44,6 @@ export const Hero = () => {
               VIEW YOUR ACHIEVEMENTS 🏆
             </Button>
           </Link>
-          
-          <Link to="/smart-mario">
-            <Button className="bg-mario-green hover:bg-mario-dark-blue text-white font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
-              <Bot size={20} className="mr-2" />
-              CHAT WITH SMART MARIO 🍄
-            </Button>
-          </Link>
         </div>
         
         <div className="flex justify-center gap-8 mt-8 flex-wrap">
@@ -61,6 +55,21 @@ export const Hero = () => {
             <Star className="text-mario-red" size={24} />
             <span>COLLECT STARS</span>
           </div>
+        </div>
+      </div>
+
+      {/* Floating Pixelated Mario */}
+      <div 
+        className="fixed bottom-6 right-6 z-50 cursor-pointer hover:scale-110 transition-transform duration-300"
+        onClick={() => navigate('/smart-mario')}
+      >
+        <div className="bg-mario-white p-4 rounded-lg border-4 border-mario-black shadow-lg hover:shadow-xl">
+          <div className="text-4xl animate-bounce-mario">
+            🍄
+          </div>
+        </div>
+        <div className="absolute -top-2 -left-2 bg-mario-red text-white text-xs font-mario-text font-bold px-2 py-1 rounded border-2 border-mario-black">
+          ASK ME!
         </div>
       </div>
     </div>
