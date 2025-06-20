@@ -14,6 +14,7 @@ import CollectedStarsAndBadges from "./pages/CollectedStarsAndBadges";
 import SmartMario from "./pages/SmartMario";
 import MentorMode from "./pages/MentorMode";
 import Community from "./pages/Community";
+import ShareStory from "./pages/ShareStory";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

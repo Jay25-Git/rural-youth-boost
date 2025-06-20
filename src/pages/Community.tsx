@@ -126,10 +126,12 @@ const Community = () => {
           </p>
           
           <div className="mt-6">
-            <Button className="bg-mario-yellow hover:bg-mario-orange text-mario-red font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
-              <Plus size={20} className="mr-2" />
-              Share Your Story! 📖
-            </Button>
+            <Link to="/share-story">
+              <Button className="bg-mario-yellow hover:bg-mario-orange text-mario-red font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
+                <Plus size={20} className="mr-2" />
+                Share Your Story! 📖
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
