@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -23,7 +22,7 @@ const Auth = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      navigate('/home');
     }
   }, [user, navigate]);
 
@@ -60,7 +59,7 @@ const Auth = () => {
     }
 
     try {
-      const redirectUrl = `${window.location.origin}/`;
+      const redirectUrl = `${window.location.origin}/home`;
       
       const { error } = await supabase.auth.signUp({
         email,
