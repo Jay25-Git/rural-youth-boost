@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Star, Zap, Trophy } from 'lucide-react';
+import { AuthButton } from './AuthButton';
 
 export const Hero = () => {
   return (
@@ -9,12 +11,17 @@ export const Hero = () => {
       <div className="absolute top-8 right-8 text-mario-white text-3xl animate-bounce-mario" style={{animationDelay: '0.5s'}}>⭐</div>
       <div className="absolute bottom-4 left-1/4 text-mario-yellow text-2xl animate-bounce-mario" style={{animationDelay: '1s'}}>🎯</div>
       
+      {/* Auth button in top right */}
+      <div className="absolute top-6 right-6 z-10">
+        <AuthButton />
+      </div>
+      
       <div className="relative max-w-6xl mx-auto px-4 text-center">
         <div className="flex justify-center items-center gap-3 mb-6">
           <div className="bg-mario-white text-mario-red p-3 rounded-lg shadow-lg border-4 border-mario-black">
             <Trophy size={32} />
           </div>
-          <h1 className="text-5xl font-mario text-shadow-lg">SKILLSYNQ+</h1>
+          <h1 className="text-5xl font-mario text-shadow-lg">SkillSynq+</h1>
         </div>
         <p className="text-xl mb-4 max-w-2xl mx-auto font-mario-text font-bold">
           🎮 LEVEL UP YOUR SKILLS! 🎮
