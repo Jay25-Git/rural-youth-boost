@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import SkillDetail from "./pages/SkillDetail";
 import CollectedStarsAndBadges from "./pages/CollectedStarsAndBadges";
+import SmartMario from "./pages/SmartMario";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/skill/:skillId" element={<SkillDetail />} />
             <Route path="/collected" element={<CollectedStarsAndBadges />} />
+            <Route path="/smart-mario" element={<SmartMario />} />
             <Route path="/" element={<Navigate to="/auth" replace />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
