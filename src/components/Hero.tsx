@@ -1,14 +1,14 @@
 
 import React from 'react';
 import { Star, Zap, Trophy } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { AuthButton } from './AuthButton';
 import { useProfile } from '@/hooks/useProfile';
+import { AnimatedMario } from './AnimatedMario';
 
 export const Hero = () => {
   const { getDisplayName } = useProfile();
-  const navigate = useNavigate();
 
   return (
     <div className="relative overflow-hidden bg-mario-red text-white py-16 border-b-8 border-mario-black">
@@ -58,20 +58,8 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Floating Pixelated Mario */}
-      <div 
-        className="fixed bottom-6 right-6 z-50 cursor-pointer hover:scale-110 transition-transform duration-300"
-        onClick={() => navigate('/smart-mario')}
-      >
-        <div className="bg-mario-white p-4 rounded-lg border-4 border-mario-black shadow-lg hover:shadow-xl">
-          <div className="text-4xl animate-bounce-mario">
-            🍄
-          </div>
-        </div>
-        <div className="absolute -top-2 -left-2 bg-mario-red text-white text-xs font-mario-text font-bold px-2 py-1 rounded border-2 border-mario-black">
-          ASK ME!
-        </div>
-      </div>
+      {/* Animated Mario */}
+      <AnimatedMario />
     </div>
   );
 };
