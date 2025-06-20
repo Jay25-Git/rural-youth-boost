@@ -20,6 +20,16 @@ serve(async (req) => {
     
     console.log('Received message for Smart Mario:', message);
 
+    if (!openAIApiKey) {
+      console.error('OpenAI API key not found');
+      return new Response(JSON.stringify({ 
+        error: 'OpenAI API key not configured' 
+      }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -43,7 +53,28 @@ serve(async (req) => {
       }),
     });
 
+    console.log('OpenAI API response status:', response.status);
+
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`OpenAI API error: ${response.status} - ${errorText}`);
+      
+      if (response.status === 429) {
+        return new Response(JSON.stringify({ 
+          reply: "🍄 Mamma mia! I'm getting too many requests right now! Please wait a moment and try again. It's-a like when the pipes get clogged in the Mushroom Kingdom! 🌟" 
+        }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
+      if (response.status === 401) {
+        return new Response(JSON.stringify({ 
+          reply: "🍄 Oops! There's a problem with my API key. Please check your OpenAI settings! Let's-a fix this together! 🌟" 
+        }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
       throw new Error(`OpenAI API error: ${response.status}`);
     }
 
@@ -58,7 +89,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in smart-mario-chat function:', error);
     return new Response(JSON.stringify({ 
-      error: 'Mamma mia! Something went wrong. Please try again!' 
+      reply: "🍄 Mamma mia! Something went wrong in my brain! Please try asking again in a moment! Wahoo! 🌟" 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
