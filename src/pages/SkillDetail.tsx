@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
+import { ArrowLeft, CheckCircle, XCircle, RotateCcw, Play, BookOpen, Lightbulb } from 'lucide-react';
 import { careerSkills, lifeSkills, hobbySkills } from '../data/skillsData';
 
 const SkillDetail = () => {
@@ -95,7 +95,10 @@ const SkillDetail = () => {
           {/* Skill Information */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl">About This Skill</CardTitle>
+              <CardTitle className="text-xl flex items-center gap-2">
+                <BookOpen size={20} />
+                About This Skill
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 leading-relaxed mb-6">
@@ -183,6 +186,81 @@ const SkillDetail = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* How to Learn This Skill Section */}
+        <Card className="mt-8">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <Lightbulb size={20} />
+              How to Learn This Skill
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="space-y-4">
+                <h4 className="font-medium text-gray-800">Getting Started</h4>
+                <div className="space-y-3">
+                  {skill.learningSteps.gettingStarted.map((step, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                      <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+                        {index + 1}
+                      </span>
+                      <p className="text-sm text-gray-700">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <h4 className="font-medium text-gray-800">Practice Tips</h4>
+                <div className="space-y-3">
+                  {skill.learningSteps.practiceTips.map((tip, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                      <span className="text-green-600">💡</span>
+                      <p className="text-sm text-gray-700">{tip}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* YouTube Videos Section */}
+        <Card className="mt-8">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <Play size={20} />
+              Recommended YouTube Videos
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-2">
+              {skill.youtubeVideos.map((video, index) => (
+                <div key={index} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-red-500 text-white rounded-lg p-2">
+                      <Play size={16} />
+                    </div>
+                    <div className="flex-1">
+                      <h5 className="font-medium text-gray-800 mb-2">{video.title}</h5>
+                      <p className="text-sm text-gray-600 mb-3">{video.description}</p>
+                      <a
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      >
+                        Watch Video
+                        <Play size={14} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Additional Learning Section */}
         <Card className="mt-8">
