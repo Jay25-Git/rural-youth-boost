@@ -34,15 +34,15 @@ export const SkillTile: React.FC<SkillTileProps> = ({ skill, accentColor }) => {
 
   const getButtonClasses = (color: string) => {
     const colorMap = {
-      red: 'bg-mario-red hover:bg-mario-dark-red border-2 border-mario-white',
-      blue: 'bg-mario-blue hover:bg-mario-dark-blue border-2 border-mario-white',
-      mixed: 'bg-mario-red hover:bg-mario-blue border-2 border-mario-white',
+      red: 'bg-mario-red hover:bg-mario-dark-red border-4 border-mario-black',
+      blue: 'bg-mario-blue hover:bg-mario-dark-blue border-4 border-mario-black',
+      mixed: 'bg-mario-red hover:bg-mario-blue border-4 border-mario-black',
     };
     return colorMap[color as keyof typeof colorMap] || colorMap.red;
   };
 
   return (
-    <Card className={`h-full transition-all duration-300 hover:shadow-2xl hover:scale-105 border-l-4 ${getAccentClasses(accentColor)} bg-mario-white rounded-lg shadow-lg border-4 border-mario-blue`}>
+    <Card className={`h-full transition-all duration-300 hover:shadow-2xl hover:scale-105 border-l-8 ${getAccentClasses(accentColor)} bg-mario-white rounded-lg shadow-lg border-4 border-mario-black`}>
       <CardHeader className="pb-3">
         <CardTitle className="text-lg font-mario text-mario-red drop-shadow-sm">
           {skill.title}

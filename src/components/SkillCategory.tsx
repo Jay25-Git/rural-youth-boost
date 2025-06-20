@@ -34,9 +34,9 @@ export const SkillCategory: React.FC<SkillCategoryProps> = ({
 }) => {
   return (
     <div className="space-y-6">
-      <div className={`bg-gradient-to-r ${bgColor} text-white p-6 rounded-lg shadow-xl border-4 border-mario-white`}>
+      <div className={`bg-${bgColor} text-white p-6 rounded-lg shadow-xl border-4 border-mario-black`}>
         <div className="flex items-center gap-4 mb-3">
-          <div className="bg-mario-white text-mario-red p-3 rounded-lg shadow-lg border-2 border-mario-blue">
+          <div className="bg-mario-white text-mario-red p-3 rounded-lg shadow-lg border-4 border-mario-black">
             <Icon size={28} />
           </div>
           <h3 className="text-2xl font-mario drop-shadow-lg">{title}</h3>

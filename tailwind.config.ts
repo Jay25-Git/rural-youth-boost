@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,19 +21,20 @@ export default {
 		extend: {
 			fontFamily: {
 				'mario': ['Press Start 2P', 'monospace'],
-				'mario-text': ['Orbitron', 'monospace'],
+				'mario-text': ['Pixelify Sans', 'monospace'],
 			},
 			colors: {
-				'mario-red': '#DC2626',
-				'mario-blue': '#1D4ED8',
+				'mario-red': '#E60012',
+				'mario-blue': '#0066CC',
 				'mario-white': '#FFFFFF',
-				'mario-dark-red': '#B91C1C',
-				'mario-dark-blue': '#1E40AF',
-				'mario-light-blue': '#3B82F6',
-				'mario-yellow': '#FCD34D',
-				'mario-green': '#10B981',
-				'mario-orange': '#F97316',
-				'mario-purple': '#8B5CF6',
+				'mario-dark-red': '#CC0000',
+				'mario-dark-blue': '#003399',
+				'mario-light-blue': '#3399FF',
+				'mario-yellow': '#FFCC00',
+				'mario-green': '#00AA00',
+				'mario-orange': '#FF6600',
+				'mario-purple': '#9933FF',
+				'mario-black': '#000000',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
