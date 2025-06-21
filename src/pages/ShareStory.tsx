@@ -7,15 +7,21 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthButton } from '@/components/AuthButton';
+import { useAuth } from '@/hooks/useAuth';
+import { useProfile } from '@/hooks/useProfile';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const ShareStory = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [skill, setSkill] = useState('');
   const [image, setImage] = useState<string>('');
-  const [authorName, setAuthorName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { getDisplayName } = useProfile();
+  const { toast } = useToast();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -30,20 +36,65 @@ const ShareStory = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !content || !skill || !authorName) {
-      alert('Please fill in all required fields');
+    
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to share your story.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!title || !content || !skill) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
       return;
     }
 
     setIsSubmitting(true);
     
-    // Simulate API call - in a real app, this would save to database
-    setTimeout(() => {
-      console.log('Story submitted:', { title, content, skill, image, authorName });
-      setIsSubmitting(false);
-      alert('Your story has been shared successfully! 🎉');
+    try {
+      const { error } = await supabase
+        .from('stories')
+        .insert({
+          user_id: user.id,
+          author_name: getDisplayName(),
+          title,
+          content,
+          skill,
+          image_url: image || null,
+        });
+
+      if (error) {
+        console.error('Error saving story:', error);
+        toast({
+          title: "Error",
+          description: "Failed to share your story. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      toast({
+        title: "Success!",
+        description: "Your story has been shared successfully! 🎉",
+      });
+      
       navigate('/community');
-    }, 1000);
+    } catch (error) {
+      console.error('Error in handleSubmit:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -88,20 +139,6 @@ const ShareStory = () => {
           
           <CardContent className="p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Author Name */}
-              <div>
-                <label className="block text-mario-red font-mario-text font-bold mb-2">
-                  Your Name *
-                </label>
-                <Input
-                  value={authorName}
-                  onChange={(e) => setAuthorName(e.target.value)}
-                  placeholder="Enter your name..."
-                  className="border-4 border-mario-black font-mario-text"
-                  required
-                />
-              </div>
-
               {/* Story Title */}
               <div>
                 <label className="block text-mario-red font-mario-text font-bold mb-2">
