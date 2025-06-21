@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -6,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
-import { Star, Crown, Zap } from 'lucide-react';
+import { Star, Crown, Zap, Trophy } from 'lucide-react';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -112,7 +113,17 @@ const Auth = () => {
         ))}
       </div>
 
-      <Card className="w-full max-w-md bg-mario-white border-8 border-mario-black shadow-2xl relative z-10">
+      {/* SkillSync+ Title - Same as Hero component */}
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="flex justify-center items-center gap-3">
+          <div className="bg-mario-white text-mario-red p-3 rounded-lg shadow-lg border-4 border-mario-black">
+            <Trophy size={32} />
+          </div>
+          <h1 className="text-5xl font-mario text-shadow-lg text-white">SkillSynq+</h1>
+        </div>
+      </div>
+
+      <Card className="w-full max-w-md bg-mario-white border-8 border-mario-black shadow-2xl relative z-10 mt-20">
         <CardHeader className="text-center bg-mario-red text-white border-b-4 border-mario-black">
           <div className="flex justify-center items-center gap-2 mb-2">
             <Crown className="text-mario-yellow" size={32} />
