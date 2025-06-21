@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Heart, Share2, Plus, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -104,7 +103,7 @@ const Community = () => {
         newLikedStories.delete(storyId);
         
         // Update likes count in stories
-        await supabase.rpc('decrement_story_likes', { story_id: storyId });
+        await (supabase as any).rpc('decrement_story_likes', { story_id: storyId });
       } else {
         // Like the story
         const { error } = await supabase
@@ -119,7 +118,7 @@ const Community = () => {
         newLikedStories.add(storyId);
         
         // Update likes count in stories
-        await supabase.rpc('increment_story_likes', { story_id: storyId });
+        await (supabase as any).rpc('increment_story_likes', { story_id: storyId });
       }
 
       setLikedStories(newLikedStories);
