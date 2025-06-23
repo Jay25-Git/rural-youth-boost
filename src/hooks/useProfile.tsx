@@ -13,6 +13,8 @@ interface Profile {
   avatar_url?: string;
   age?: number;
   gender?: string;
+  user_type?: 'student' | 'mentor';
+  user_role?: 'learner' | 'teacher';
 }
 
 export const useProfile = () => {
