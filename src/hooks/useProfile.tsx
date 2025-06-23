@@ -54,7 +54,7 @@ export const useProfile = () => {
         };
         setProfile(profileData);
       } else {
-        setProfile(data);
+        setProfile(null);
       }
     } catch (error) {
       console.error('Error in fetchProfile:', error);
