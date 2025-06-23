@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Users, Star, BookOpen, Award } from 'lucide-react';
+import { ArrowLeft, Users, Star, BookOpen, Award, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -86,6 +86,20 @@ const MentorMode = () => {
               <p className="font-mario-text font-bold text-sm text-mario-blue">Guide students and earn rewards</p>
             </div>
           </div>
+        </div>
+
+        {/* Meet Our Mentors Section */}
+        <div className="bg-mario-yellow rounded-lg shadow-xl border-4 border-mario-black p-8 mb-8 text-center">
+          <h3 className="text-2xl font-mario text-mario-red mb-4">👥 Meet Our Amazing Mentors</h3>
+          <p className="font-mario-text font-bold text-mario-blue mb-6">
+            Learn about the incredible mentors who have guided our SkillSync+ journey!
+          </p>
+          <Link to="/mentor-page">
+            <Button className="bg-mario-blue hover:bg-mario-dark-blue text-white font-mario-text font-bold text-lg px-6 py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300">
+              <ExternalLink size={20} className="mr-2" />
+              View Mentor Stories 📖
+            </Button>
+          </Link>
         </div>
 
         {/* Call to Action */}
