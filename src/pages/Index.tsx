@@ -1,9 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Hero } from '../components/Hero';
 import { SkillCategories } from '../components/SkillCategories';
 import { Tutorial } from '../components/Tutorial';
+import { RoleSelection } from '../components/RoleSelection';
 import { useAuth } from '../hooks/useAuth';
 import { useTutorial } from '../hooks/useTutorial';
 import { Button } from '@/components/ui/button';
@@ -13,6 +14,7 @@ const Index = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { isOpen, hasSeenTutorial, startTutorial, closeTutorial, isNewUser } = useTutorial();
+  const [showRoleSelection, setShowRoleSelection] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -21,15 +23,33 @@ const Index = () => {
   }, [user, navigate]);
 
   useEffect(() => {
+    // Check if user needs role selection
+    const needsRoleSelection = localStorage.getItem('skillsynq-needs-role-selection') === 'true';
+    if (user && needsRoleSelection) {
+      setShowRoleSelection(true);
+    }
+  }, [user]);
+
+  useEffect(() => {
     // Auto-start tutorial only for brand new users who haven't seen it before
-    if (user && !hasSeenTutorial && isNewUser()) {
+    if (user && !hasSeenTutorial && isNewUser() && !showRoleSelection) {
       setTimeout(() => startTutorial(), 1000);
     }
-  }, [user, hasSeenTutorial, startTutorial, isNewUser]);
+  }, [user, hasSeenTutorial, startTutorial, isNewUser, showRoleSelection]);
+
+  const handleRoleSelectionComplete = () => {
+    localStorage.removeItem('skillsynq-needs-role-selection');
+    setShowRoleSelection(false);
+  };
 
   // Don't render anything if user is not authenticated
   if (!user) {
     return null;
+  }
+
+  // Show role selection if needed
+  if (showRoleSelection) {
+    return <RoleSelection onComplete={handleRoleSelectionComplete} />;
   }
 
   return (

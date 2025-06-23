@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
-import { Star, Crown, Zap, Trophy } from 'lucide-react';
+import { Star, Crown, Zap, Trophy, GraduationCap, Users } from 'lucide-react';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -16,6 +15,7 @@ const Auth = () => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
+  const [userType, setUserType] = useState<'student' | 'mentor' | ''>('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -29,6 +29,11 @@ const Auth = () => {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!userType) {
+      setError('Please select if you are a Student or Mentor');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
@@ -40,6 +45,14 @@ const Auth = () => {
 
       if (error) throw error;
       
+      // Update user type in profile if different
+      if (user) {
+        await supabase
+          .from('profiles')
+          .update({ user_type: userType })
+          .eq('id', user.id);
+      }
+      
       // Redirect will be handled by useAuth
     } catch (error: any) {
       setError(error.message);
@@ -50,6 +63,11 @@ const Auth = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!userType) {
+      setError('Please select if you are a Student or Mentor');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
@@ -71,14 +89,16 @@ const Auth = () => {
             name,
             age: parseInt(age),
             gender,
+            user_type: userType,
           }
         }
       });
 
       if (error) throw error;
       
-      // Mark user as new for tutorial purposes
+      // Mark user as new for role selection
       localStorage.setItem('skillsynq-new-user', 'true');
+      localStorage.setItem('skillsynq-needs-role-selection', 'true');
       
       setError('Please check your email for a confirmation link!');
     } catch (error: any) {
@@ -143,6 +163,40 @@ const Auth = () => {
               {error}
             </div>
           )}
+
+          {/* User Type Selection */}
+          <div className="space-y-3">
+            <Label className="font-mario-text font-bold text-mario-red flex items-center gap-2">
+              <Star size={16} className="text-mario-yellow" />
+              ARE YOU A...
+            </Label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setUserType('student')}
+                className={`p-3 border-4 rounded-lg font-mario-text font-bold transition-all duration-300 ${
+                  userType === 'student'
+                    ? 'border-mario-green bg-mario-green text-white shadow-lg'
+                    : 'border-mario-black bg-white text-mario-black hover:border-mario-green'
+                }`}
+              >
+                <GraduationCap className="mx-auto mb-1" size={20} />
+                STUDENT
+              </button>
+              <button
+                type="button"
+                onClick={() => setUserType('mentor')}
+                className={`p-3 border-4 rounded-lg font-mario-text font-bold transition-all duration-300 ${
+                  userType === 'mentor'
+                    ? 'border-mario-blue bg-mario-blue text-white shadow-lg'
+                    : 'border-mario-black bg-white text-mario-black hover:border-mario-blue'
+                }`}
+              >
+                <Users className="mx-auto mb-1" size={20} />
+                MENTOR
+              </button>
+            </div>
+          </div>
           
           <form onSubmit={isSignUp ? handleSignUp : handleSignIn} className="space-y-4">
             <div className="space-y-2">
@@ -237,7 +291,7 @@ const Auth = () => {
             
             <Button
               type="submit"
-              disabled={loading}
+              disabled={loading || !userType}
               className="w-full bg-mario-red hover:bg-mario-dark-red text-white font-mario-text font-bold text-lg py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300"
             >
               {loading ? (
@@ -258,6 +312,7 @@ const Auth = () => {
               onClick={() => {
                 setIsSignUp(!isSignUp);
                 setError('');
+                setUserType('');
               }}
               className="font-mario-text font-bold text-mario-blue hover:text-mario-dark-blue transition-colors"
             >

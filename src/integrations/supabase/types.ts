@@ -22,6 +22,8 @@ export type Database = {
           name: string
           nickname: string | null
           updated_at: string
+          user_role: string | null
+          user_type: string | null
         }
         Insert: {
           age?: number | null
@@ -35,6 +37,8 @@ export type Database = {
           name: string
           nickname?: string | null
           updated_at?: string
+          user_role?: string | null
+          user_type?: string | null
         }
         Update: {
           age?: number | null
@@ -48,6 +52,8 @@ export type Database = {
           name?: string
           nickname?: string | null
           updated_at?: string
+          user_role?: string | null
+          user_type?: string | null
         }
         Relationships: []
       }
