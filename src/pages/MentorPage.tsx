@@ -1,66 +1,55 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Users, Award, MessageSquare, Heart, ExternalLink, Mail, Linkedin } from 'lucide-react';
+import { ArrowLeft, Upload, BookOpen, Users, Star, Plus, Edit, Trash2, Play, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useProfile } from '@/hooks/useProfile';
 
 const MentorPage = () => {
   const { t } = useLanguage();
+  const { profile } = useProfile();
+  const [showUploadForm, setShowUploadForm] = useState(false);
+  const [contentType, setContentType] = useState<'course' | 'tutorial' | 'challenge'>('course');
 
-  const mentors = [
+  // Mock data for mentor's content
+  const [mentorContent, setMentorContent] = useState([
     {
-      name: "Dr. Priya Sharma",
-      designation: "Senior Trainer & Innovation Coach",
-      institution: "NxtWave",
-      expertise: "Educational Technology, Rural Development, Gamification",
-      image: "/placeholder.svg",
-      linkedin: "#",
-      email: "priya.sharma@nxtwave.com",
-      insight: "The SkillSync+ team brought together creativity and purpose in a unique way. Their use of gamification to solve real-world skill gaps among rural youth is inspiring. Proud to mentor such a driven team."
+      id: 1,
+      title: "JavaScript Fundamentals",
+      type: "course",
+      students: 45,
+      rating: 4.8,
+      status: "published"
     },
     {
-      name: "Rajesh Kumar",
-      designation: "Hackathon Judge & Industry Expert",
-      institution: "Tech Innovators Hub",
-      expertise: "Web Development, UI/UX Design, Product Strategy",
-      image: "/placeholder.svg",
-      linkedin: "#",
-      email: "rajesh.kumar@techinnovators.com",
-      insight: "What impressed me most about SkillSync+ was their deep understanding of user needs. They didn't just build a platform; they created an experience that truly resonates with their target audience."
+      id: 2,
+      title: "React Hooks Tutorial",
+      type: "tutorial",
+      students: 23,
+      rating: 4.9,
+      status: "published"
+    },
+    {
+      id: 3,
+      title: "Build a Todo App",
+      type: "challenge",
+      students: 67,
+      rating: 4.7,
+      status: "draft"
     }
-  ];
+  ]);
 
-  const mentorshipAreas = [
-    {
-      icon: <MessageSquare className="text-mario-yellow" size={24} />,
-      title: "Ideation & Feasibility",
-      description: "Guidance on concept development and technical feasibility assessment"
-    },
-    {
-      icon: <Users className="text-mario-yellow" size={24} />,
-      title: "UI/UX & User Journey",
-      description: "Feedback on user interface design and overall user experience flow"
-    },
-    {
-      icon: <Award className="text-mario-yellow" size={24} />,
-      title: "Pitch & Presentation",
-      description: "Support with presentation skills and final deployment strategies"
-    },
-    {
-      icon: <Heart className="text-mario-yellow" size={24} />,
-      title: "Tech Stack & Best Practices",
-      description: "Mentorship on technology choices and development best practices"
-    }
-  ];
-
-  const teamTestimonials = [
-    "Our mentor helped us fine-tune our gamification logic and make it more engaging for rural users.",
-    "We gained clarity on how to simplify the platform for rural users without losing core functionality.",
-    "The real-world examples and continuous feedback made a big difference in our approach.",
-    "Having industry experts guide us gave us confidence in our technical decisions."
-  ];
+  const stats = {
+    totalStudents: mentorContent.reduce((sum, content) => sum + content.students, 0),
+    totalCourses: mentorContent.filter(c => c.type === 'course').length,
+    avgRating: 4.8,
+    totalEarnings: 2340
+  };
 
   return (
     <div className="min-h-screen bg-mario-blue">
@@ -71,184 +60,205 @@ const MentorPage = () => {
             <ArrowLeft size={20} />
             <span className="font-mario-text font-bold">Back to Home</span>
           </Link>
-          <div className="text-center">
-            <h1 className="text-4xl font-mario text-shadow-lg mb-2">🧠 SkillSync+ Mentors 🧠</h1>
-            <p className="text-xl font-mario-text font-bold">Meet the Amazing Mentors Who Guided Our Adventure!</p>
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-4xl font-mario text-shadow-lg mb-2">🎓 Mentor Dashboard 🎓</h1>
+              <p className="text-xl font-mario-text font-bold">Welcome back, {profile?.name || 'Mentor'}!</p>
+            </div>
+            <Button
+              onClick={() => setShowUploadForm(true)}
+              className="bg-mario-yellow hover:bg-mario-orange text-mario-red font-mario-text font-bold border-4 border-mario-black shadow-lg"
+            >
+              <Plus size={20} className="mr-2" />
+              Create Content
+            </Button>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-6xl mx-auto px-4 py-8">
         
-        {/* Mentor Details Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-mario text-mario-red text-center mb-8">🎓 Our Incredible Mentors</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {mentors.map((mentor, index) => (
-              <Card key={index} className="bg-mario-white border-4 border-mario-black shadow-xl">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4">
-                    <img 
-                      src={mentor.image} 
-                      alt={mentor.name}
-                      className="w-24 h-24 rounded-full border-4 border-mario-yellow shadow-lg mx-auto"
-                    />
-                  </div>
-                  <CardTitle className="text-2xl font-mario text-mario-red">{mentor.name}</CardTitle>
-                  <p className="text-mario-blue font-mario-text font-bold">{mentor.designation}</p>
-                  <p className="text-mario-blue font-mario-text">{mentor.institution}</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-mario text-mario-red mb-2">Expertise:</h4>
-                      <p className="font-mario-text font-bold text-mario-blue text-sm">{mentor.expertise}</p>
-                    </div>
-                    <div className="flex gap-3 justify-center">
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="border-mario-blue text-mario-blue hover:bg-mario-blue hover:text-white"
-                      >
-                        <Linkedin size={16} className="mr-1" />
-                        LinkedIn
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="border-mario-green text-mario-green hover:bg-mario-green hover:text-white"
-                      >
-                        <Mail size={16} className="mr-1" />
-                        Email
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card className="bg-mario-white border-4 border-mario-black shadow-xl">
+            <CardContent className="p-6 text-center">
+              <Users size={32} className="text-mario-blue mx-auto mb-2" />
+              <div className="text-2xl font-mario text-mario-red">{stats.totalStudents}</div>
+              <div className="font-mario-text font-bold text-mario-blue">Total Students</div>
+            </CardContent>
+          </Card>
 
-        {/* Mentor Insights Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-mario text-mario-red text-center mb-8">💬 Words from Our Mentors</h2>
-          <div className="space-y-6">
-            {mentors.map((mentor, index) => (
-              <Card key={index} className="bg-mario-yellow border-4 border-mario-black shadow-xl">
-                <CardContent className="p-6">
-                  <blockquote className="text-lg font-mario-text font-bold text-mario-red italic mb-4">
-                    "{mentor.insight}"
-                  </blockquote>
-                  <footer className="text-mario-blue font-mario text-right">
-                    — {mentor.name}
-                  </footer>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+          <Card className="bg-mario-white border-4 border-mario-black shadow-xl">
+            <CardContent className="p-6 text-center">
+              <BookOpen size={32} className="text-mario-green mx-auto mb-2" />
+              <div className="text-2xl font-mario text-mario-red">{stats.totalCourses}</div>
+              <div className="font-mario-text font-bold text-mario-blue">Courses Created</div>
+            </CardContent>
+          </Card>
 
-        {/* Role of Mentors Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-mario text-mario-red text-center mb-8">👨‍🏫 How Our Mentors Supported Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {mentorshipAreas.map((area, index) => (
-              <Card key={index} className="bg-mario-white border-4 border-mario-black shadow-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    {area.icon}
-                    <h3 className="text-xl font-mario text-mario-blue">{area.title}</h3>
-                  </div>
-                  <p className="font-mario-text font-bold text-mario-blue text-sm">{area.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+          <Card className="bg-mario-white border-4 border-mario-black shadow-xl">
+            <CardContent className="p-6 text-center">
+              <Star size={32} className="text-mario-yellow mx-auto mb-2" />
+              <div className="text-2xl font-mario text-mario-red">{stats.avgRating}</div>
+              <div className="font-mario-text font-bold text-mario-blue">Avg Rating</div>
+            </CardContent>
+          </Card>
 
-        {/* Team Testimonials Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-mario text-mario-red text-center mb-8">🛠️ How Mentorship Helped Us</h2>
-          <Card className="bg-mario-green text-white border-4 border-mario-black shadow-xl">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {teamTestimonials.map((testimonial, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="bg-mario-yellow text-mario-red w-8 h-8 rounded-full flex items-center justify-center font-mario font-bold text-sm flex-shrink-0 mt-1">
-                      {index + 1}
-                    </div>
-                    <p className="font-mario-text font-bold text-sm italic">"{testimonial}"</p>
-                  </div>
-                ))}
-              </div>
+          <Card className="bg-mario-white border-4 border-mario-black shadow-xl">
+            <CardContent className="p-6 text-center">
+              <div className="text-mario-yellow text-2xl mx-auto mb-2">🪙</div>
+              <div className="text-2xl font-mario text-mario-red">{stats.totalEarnings}</div>
+              <div className="font-mario-text font-bold text-mario-blue">Star Points</div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Visuals Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-mario text-mario-red text-center mb-8">📸 Mentorship Moments</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-mario-white border-4 border-mario-black shadow-xl">
-              <CardContent className="p-4">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="Mentor Team Interaction"
-                  className="w-full h-48 object-cover rounded-lg border-2 border-mario-yellow mb-3"
-                />
-                <p className="font-mario-text font-bold text-mario-blue text-sm text-center">
-                  Mentor & Team Interaction Session
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-mario-white border-4 border-mario-black shadow-xl">
-              <CardContent className="p-4">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="Live Feedback Session"
-                  className="w-full h-48 object-cover rounded-lg border-2 border-mario-yellow mb-3"
-                />
-                <p className="font-mario-text font-bold text-mario-blue text-sm text-center">
-                  Live Feedback & Code Review
-                </p>
-              </CardContent>
-            </Card>
+        {/* Upload Form Modal */}
+        {showUploadForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <Card className="bg-mario-white border-4 border-mario-black shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <CardHeader className="bg-mario-yellow border-b-4 border-mario-black">
+                <CardTitle className="text-2xl font-mario text-mario-red flex items-center gap-2">
+                  <Upload size={24} />
+                  Create New Content
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 space-y-4">
+                {/* Content Type Selection */}
+                <div className="space-y-2">
+                  <Label className="font-mario-text font-bold text-mario-red">Content Type</Label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {['course', 'tutorial', 'challenge'].map((type) => (
+                      <button
+                        key={type}
+                        onClick={() => setContentType(type as any)}
+                        className={`p-3 border-4 rounded-lg font-mario-text font-bold transition-all duration-300 ${
+                          contentType === type
+                            ? 'border-mario-green bg-mario-green text-white shadow-lg'
+                            : 'border-mario-black bg-white text-mario-black hover:border-mario-green'
+                        }`}
+                      >
+                        {type.toUpperCase()}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-            <Card className="bg-mario-white border-4 border-mario-black shadow-xl">
-              <CardContent className="p-4">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="Presentation Practice"
-                  className="w-full h-48 object-cover rounded-lg border-2 border-mario-yellow mb-3"
-                />
-                <p className="font-mario-text font-bold text-mario-blue text-sm text-center">
-                  Final Presentation Practice
-                </p>
+                <div className="space-y-2">
+                  <Label className="font-mario-text font-bold text-mario-red">Title</Label>
+                  <Input
+                    placeholder="Enter content title"
+                    className="border-4 border-mario-black font-mario-text font-bold"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="font-mario-text font-bold text-mario-red">Description</Label>
+                  <Textarea
+                    placeholder="Describe your content"
+                    className="border-4 border-mario-black font-mario-text font-bold"
+                    rows={4}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="font-mario-text font-bold text-mario-red">Skill Category</Label>
+                  <select className="w-full border-4 border-mario-black rounded-lg p-2 font-mario-text font-bold">
+                    <option>Web Development</option>
+                    <option>Mobile Development</option>
+                    <option>Data Science</option>
+                    <option>Design</option>
+                    <option>Business</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="font-mario-text font-bold text-mario-red">Upload Materials</Label>
+                  <div className="border-4 border-dashed border-mario-black rounded-lg p-6 text-center bg-mario-yellow bg-opacity-20">
+                    <Upload size={32} className="text-mario-blue mx-auto mb-2" />
+                    <p className="font-mario-text font-bold text-mario-blue">
+                      Drop files here or click to upload
+                    </p>
+                    <p className="text-sm font-mario-text text-mario-blue">
+                      Videos, PDFs, Images, Code files
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <Button
+                    onClick={() => setShowUploadForm(false)}
+                    variant="outline"
+                    className="flex-1 border-4 border-mario-black font-mario-text font-bold"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    className="flex-1 bg-mario-green hover:bg-mario-dark-green text-white font-mario-text font-bold border-4 border-mario-black shadow-lg"
+                  >
+                    Create Content
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
-        </div>
+        )}
 
-        {/* Optional Add-ons Section */}
-        <div className="text-center">
-          <h2 className="text-3xl font-mario text-mario-red mb-8">✨ Recognition & Connect</h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Card className="bg-mario-yellow border-4 border-mario-black shadow-xl p-6">
-              <div className="flex items-center gap-3">
-                <Award size={32} className="text-mario-red" />
-                <div>
-                  <h3 className="font-mario text-mario-red">Mentorship Certificate</h3>
-                  <p className="font-mario-text font-bold text-mario-blue text-sm">Recognized Excellence in Guidance</p>
-                </div>
-              </div>
-            </Card>
-            
-            <Button className="bg-mario-blue hover:bg-mario-dark-blue text-white font-mario-text font-bold border-4 border-mario-black shadow-lg">
-              <ExternalLink size={20} className="mr-2" />
-              Connect with Our Mentors
-            </Button>
+        {/* Content Management */}
+        <div className="space-y-6">
+          <h2 className="text-3xl font-mario text-mario-red">📚 Your Content</h2>
+          
+          <div className="grid grid-cols-1 gap-6">
+            {mentorContent.map((content) => (
+              <Card key={content.id} className="bg-mario-white border-4 border-mario-black shadow-xl">
+                <CardContent className="p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl font-mario text-mario-red">{content.title}</h3>
+                        <span className={`px-3 py-1 rounded-full text-xs font-mario-text font-bold border-2 ${
+                          content.type === 'course' ? 'bg-mario-blue text-white border-mario-blue' :
+                          content.type === 'tutorial' ? 'bg-mario-green text-white border-mario-green' :
+                          'bg-mario-yellow text-mario-red border-mario-yellow'
+                        }`}>
+                          {content.type.toUpperCase()}
+                        </span>
+                        <span className={`px-3 py-1 rounded-full text-xs font-mario-text font-bold border-2 ${
+                          content.status === 'published' ? 'bg-mario-green text-white border-mario-green' :
+                          'bg-mario-orange text-white border-mario-orange'
+                        }`}>
+                          {content.status.toUpperCase()}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-6 text-sm font-mario-text font-bold text-mario-blue">
+                        <span className="flex items-center gap-1">
+                          <Users size={16} />
+                          {content.students} students
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Star size={16} className="text-mario-yellow" />
+                          {content.rating}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="outline" className="border-mario-blue text-mario-blue hover:bg-mario-blue hover:text-white">
+                        <Play size={16} className="mr-1" />
+                        Preview
+                      </Button>
+                      <Button size="sm" variant="outline" className="border-mario-green text-mario-green hover:bg-mario-green hover:text-white">
+                        <Edit size={16} className="mr-1" />
+                        Edit
+                      </Button>
+                      <Button size="sm" variant="outline" className="border-mario-red text-mario-red hover:bg-mario-red hover:text-white">
+                        <Trash2 size={16} />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </div>

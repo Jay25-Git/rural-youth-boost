@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
@@ -36,11 +37,18 @@ const App = () => (
               <Route path="/collected" element={<CollectedStarsAndBadges />} />
               <Route path="/smart-mario" element={<SmartMario />} />
               <Route path="/mentor-mode" element={<MentorMode />} />
-              <Route path="/mentor-page" element={<MentorPage />} />
+              <Route 
+                path="/mentor-page" 
+                element={
+                  <ProtectedRoute requiredUserType="mentor">
+                    <MentorPage />
+                  </ProtectedRoute>
+                } 
+              />
               <Route path="/community" element={<Community />} />
-              <Route path="/" element={<Navigate to="/auth" replace />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="/share-story" element={<ShareStory />} />
+              <Route path="/" element={<Navigate to="/auth" replace />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </AuthProvider>
