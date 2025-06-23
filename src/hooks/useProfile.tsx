@@ -45,7 +45,17 @@ export const useProfile = () => {
         return;
       }
 
-      setProfile(data);
+      if (data) {
+        // Type cast the data to ensure compatibility with our Profile interface
+        const profileData: Profile = {
+          ...data,
+          user_type: data.user_type as 'student' | 'mentor' | undefined,
+          user_role: data.user_role as 'learner' | 'teacher' | undefined,
+        };
+        setProfile(profileData);
+      } else {
+        setProfile(data);
+      }
     } catch (error) {
       console.error('Error in fetchProfile:', error);
     } finally {
