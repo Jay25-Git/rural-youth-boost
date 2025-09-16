@@ -10,6 +10,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useProfile } from '@/hooks/useProfile';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import VoiceRecorder from '@/components/VoiceRecorder';
 
 interface Message {
   id: string;
@@ -109,6 +110,10 @@ const SmartMario = () => {
       e.preventDefault();
       handleSendMessage();
     }
+  };
+
+  const handleVoiceTranscription = (transcribedText: string) => {
+    setInputText(transcribedText);
   };
 
   if (!user) {
@@ -214,6 +219,10 @@ const SmartMario = () => {
                 className="flex-1 border-4 border-mario-black font-mario-text font-bold"
                 disabled={isLoading}
               />
+              <VoiceRecorder
+                onTranscription={handleVoiceTranscription}
+                disabled={isLoading}
+              />
               <Button
                 onClick={handleSendMessage}
                 disabled={!inputText.trim() || isLoading}
@@ -223,7 +232,7 @@ const SmartMario = () => {
               </Button>
             </div>
             <p className="text-xs text-gray-600 mt-2 font-mario-text">
-              💡 TIP: Press Enter to send your message quickly!
+              💡 TIP: Press Enter to send or use the microphone to speak! 🎙️
             </p>
           </CardContent>
         </Card>
