@@ -15,11 +15,9 @@ interface Story {
   author_name: string;
   title: string;
   content: string;
-  image_url: string | null;
-  likes: number;
-  skill: string;
   created_at: string;
   user_id: string;
+  likes?: number; // Will be populated separately
 }
 
 const Community = () => {
@@ -32,7 +30,7 @@ const Community = () => {
 
   const fetchStories = async () => {
     try {
-      const { data, error } = await supabase
+      const { data: storiesData, error } = await supabase
         .from('stories')
         .select('*')
         .order('created_at', { ascending: false });
@@ -47,7 +45,22 @@ const Community = () => {
         return;
       }
 
-      setStories(data || []);
+      // Fetch likes count for each story
+      const storiesWithLikes = await Promise.all(
+        (storiesData || []).map(async (story) => {
+          const { count } = await supabase
+            .from('story_likes')
+            .select('*', { count: 'exact', head: true })
+            .eq('story_id', story.id);
+          
+          return {
+            ...story,
+            likes: count || 0
+          };
+        })
+      );
+
+      setStories(storiesWithLikes);
     } catch (error) {
       console.error('Error in fetchStories:', error);
     } finally {
@@ -102,8 +115,7 @@ const Community = () => {
 
         newLikedStories.delete(storyId);
         
-        // Update likes count in stories
-        await (supabase as any).rpc('decrement_story_likes', { story_id: storyId });
+        // Likes count will be updated in local state below
       } else {
         // Like the story
         const { error } = await supabase
@@ -117,8 +129,7 @@ const Community = () => {
 
         newLikedStories.add(storyId);
         
-        // Update likes count in stories
-        await (supabase as any).rpc('increment_story_likes', { story_id: storyId });
+        // Likes count will be updated in local state below
       }
 
       setLikedStories(newLikedStories);
@@ -126,7 +137,7 @@ const Community = () => {
       // Update local state
       setStories(prev => prev.map(story => 
         story.id === storyId 
-          ? { ...story, likes: story.likes + (isLiked ? -1 : 1) }
+          ? { ...story, likes: (story.likes || 0) + (isLiked ? -1 : 1) }
           : story
       ));
     } catch (error) {
@@ -251,7 +262,7 @@ const Community = () => {
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-mario text-mario-red">{story.author_name}</h3>
                         <span className="bg-mario-blue text-white text-xs px-2 py-1 rounded font-mario-text font-bold">
-                          {story.skill}
+                          Rural Youth
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 font-mario-text">{formatDate(story.created_at)}</p>
@@ -267,15 +278,7 @@ const Community = () => {
                     {story.content}
                   </p>
                   
-                  {story.image_url && (
-                    <div className="rounded-lg overflow-hidden border-4 border-mario-black">
-                      <img 
-                        src={story.image_url} 
-                        alt={story.title}
-                        className="w-full h-64 object-cover"
-                      />
-                    </div>
-                  )}
+                  {/* Image support can be added later */}
                   
                   <div className="flex items-center gap-4 pt-4 border-t-2 border-mario-black">
                     <Button
@@ -291,7 +294,7 @@ const Community = () => {
                         size={20} 
                         className={likedStories.has(story.id) ? 'fill-current' : ''} 
                       />
-                      {story.likes} ❤️
+                      {story.likes || 0} ❤️
                     </Button>
                     
                     <Button variant="ghost" className="flex items-center gap-2 text-gray-600 hover:text-mario-green font-mario-text font-bold">
