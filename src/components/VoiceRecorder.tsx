@@ -14,10 +14,59 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ onTranscription, disabled
   const [isProcessing, setIsProcessing] = useState(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
+  const recognitionRef = useRef<any>(null);
   const { toast } = useToast();
 
   const startRecording = async () => {
     try {
+      const SpeechRecognitionAPI = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognitionAPI) {
+        // Use browser Speech Recognition if available (no API quota, faster UX)
+        const recognition = new SpeechRecognitionAPI();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognitionRef.current = recognition;
+
+        recognition.onresult = (event: any) => {
+          const transcript = event.results?.[0]?.[0]?.transcript ?? '';
+          if (transcript) {
+            onTranscription(transcript);
+            toast({
+              title: '🎯 Speech recognized!',
+              description: 'Your voice has been converted to text (browser).',
+            });
+          }
+          setIsRecording(false);
+          setIsProcessing(false);
+        };
+
+        recognition.onerror = (e: any) => {
+          console.error('SpeechRecognition error:', e);
+          setIsRecording(false);
+          setIsProcessing(false);
+          toast({
+            title: 'Voice Error',
+            description: 'Voice recognition failed. You can try again or type instead.',
+            variant: 'destructive',
+          });
+        };
+
+        recognition.onend = () => {
+          // Ensure flags reset if it ends unexpectedly
+          setIsRecording(false);
+        };
+
+        recognition.start();
+        setIsRecording(true);
+        toast({
+          title: '🎙️ Listening…',
+          description: "Speak now! Click stop to finish.",
+        });
+        return;
+      }
+
+      // Fallback: record audio and transcribe via Supabase Edge Function
       const stream = await navigator.mediaDevices.getUserMedia({ 
         audio: {
           sampleRate: 16000,
@@ -53,20 +102,27 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ onTranscription, disabled
       setIsRecording(true);
       
       toast({
-        title: "🎙️ Recording started",
+        title: '🎙️ Recording started',
         description: "Speak now! Click stop when you're done.",
       });
     } catch (error) {
       console.error('Error accessing microphone:', error);
       toast({
-        title: "Microphone Error",
-        description: "Unable to access microphone. Please check permissions.",
-        variant: "destructive",
+        title: 'Microphone Error',
+        description: 'Unable to access microphone. Please check permissions.',
+        variant: 'destructive',
       });
     }
   };
 
   const stopRecording = () => {
+    if (recognitionRef.current && isRecording) {
+      try { recognitionRef.current.stop(); } catch {}
+      setIsRecording(false);
+      setIsProcessing(true);
+      return;
+    }
+
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
