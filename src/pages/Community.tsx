@@ -17,6 +17,8 @@ interface Story {
   content: string;
   created_at: string;
   user_id: string;
+  skill?: string;
+  image_url?: string;
   likes?: number; // Will be populated separately
 }
 
@@ -261,9 +263,11 @@ const Community = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-mario text-mario-red">{story.author_name}</h3>
-                        <span className="bg-mario-blue text-white text-xs px-2 py-1 rounded font-mario-text font-bold">
-                          Rural Youth
-                        </span>
+                        {story.skill && (
+                          <span className="bg-mario-blue text-white text-xs px-2 py-1 rounded font-mario-text font-bold">
+                            {story.skill}
+                          </span>
+                        )}
                       </div>
                       <p className="text-sm text-gray-600 font-mario-text">{formatDate(story.created_at)}</p>
                     </div>
@@ -278,7 +282,16 @@ const Community = () => {
                     {story.content}
                   </p>
                   
-                  {/* Image support can be added later */}
+                  {/* Story Image */}
+                  {story.image_url && (
+                    <div className="mt-4">
+                      <img 
+                        src={story.image_url} 
+                        alt="Story image" 
+                        className="w-full max-w-md mx-auto rounded-lg border-4 border-mario-black shadow-lg"
+                      />
+                    </div>
+                  )}
                   
                   <div className="flex items-center gap-4 pt-4 border-t-2 border-mario-black">
                     <Button
