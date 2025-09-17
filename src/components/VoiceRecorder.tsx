@@ -103,9 +103,18 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ onTranscription, disabled
       }
     } catch (error) {
       console.error('Error processing audio:', error);
+      
+      // More specific error messages
+      let errorMessage = "Unable to convert speech to text. Please try again.";
+      if (error.message && error.message.includes('quota')) {
+        errorMessage = "Voice transcription quota exceeded. Please check your OpenAI account billing.";
+      } else if (error.message && error.message.includes('API')) {
+        errorMessage = "Voice transcription service is currently unavailable.";
+      }
+      
       toast({
         title: "Transcription Error",
-        description: "Unable to convert speech to text. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
