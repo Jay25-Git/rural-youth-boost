@@ -17,6 +17,7 @@ const Profile = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [avatarVersion, setAvatarVersion] = useState<number>(0);
   const [profile, setProfile] = useState({
     nickname: '',
     bio: '',
@@ -39,7 +40,7 @@ const Profile = () => {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', user!.id)
+        .eq('user_id', user!.id)
         .single();
 
       if (error && error.code !== 'PGRST116') {
@@ -93,6 +94,15 @@ const Profile = () => {
       const { data } = supabase.storage.from('avatars').getPublicUrl(filePath);
       
       setProfile(prev => ({ ...prev, avatar_url: filePath }));
+
+      // Persist avatar change immediately so it's reflected across the app
+      await supabase
+        .from('profiles')
+        .update({ avatar_url: filePath, updated_at: new Date().toISOString() })
+        .eq('user_id', user!.id);
+
+      // Bump cache buster so the image refreshes
+      setAvatarVersion(Date.now());
       
       toast({
         title: "Success",
@@ -123,7 +133,7 @@ const Profile = () => {
           avatar_url: profile.avatar_url,
           updated_at: new Date().toISOString()
         })
-        .eq('id', user!.id);
+        .eq('user_id', user!.id);
 
       if (error) throw error;
 
@@ -145,7 +155,8 @@ const Profile = () => {
   const getAvatarUrl = () => {
     if (profile.avatar_url) {
       const { data } = supabase.storage.from('avatars').getPublicUrl(profile.avatar_url);
-      return data.publicUrl;
+      const base = data.publicUrl;
+      return avatarVersion ? `${base}?v=${avatarVersion}` : base;
     }
     return null;
   };

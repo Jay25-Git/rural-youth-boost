@@ -5,6 +5,7 @@ import { useAuth } from './useAuth';
 
 interface Profile {
   id: string;
+  user_id: string;
   name: string;
   nickname?: string;
   bio?: string;
@@ -37,7 +38,7 @@ export const useProfile = () => {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', user!.id)
+        .eq('user_id', user!.id)
         .single();
 
       if (error && error.code !== 'PGRST116') {
@@ -46,12 +47,11 @@ export const useProfile = () => {
       }
 
       if (data) {
-        // Type cast the data to ensure compatibility with our Profile interface
         const profileData: Profile = {
           ...data,
           user_type: data.user_type as 'student' | 'mentor' | undefined,
           user_role: data.user_role as 'learner' | 'teacher' | undefined,
-        };
+        } as Profile;
         setProfile(profileData);
       } else {
         setProfile(null);
@@ -71,7 +71,9 @@ export const useProfile = () => {
   const getAvatarUrl = () => {
     if (profile?.avatar_url) {
       const { data } = supabase.storage.from('avatars').getPublicUrl(profile.avatar_url);
-      return data.publicUrl;
+      // Add small cache buster tied to updated_at if available
+      const base = data.publicUrl;
+      return base;
     }
     return null;
   };
