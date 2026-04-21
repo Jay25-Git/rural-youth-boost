@@ -28,7 +28,7 @@ export const Hero = () => {
       {/* Auth button in top right */}
       <div className="absolute top-6 right-6 z-10" data-tutorial="auth-button">
         <AuthButton />
-      </div>
+      </div>xx
       
       <div className="relative max-w-6xl mx-auto px-4 text-center">
         <div className="flex justify-center items-center gap-3 mb-6">

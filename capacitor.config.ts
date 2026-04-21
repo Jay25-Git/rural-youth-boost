@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'app.lovable.58abc300d4184e4b9f2198e24676fcd7',
+  appId: 'com.lovable.app',
   appName: 'rural-youth-boost',
   webDir: 'dist',
   server: {

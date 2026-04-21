@@ -1,7 +1,18 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
+
+// Use local types for the context
+interface User {
+  id: string;
+  email: string;
+  user_metadata?: any;
+}
+
+interface Session {
+  user: User;
+  access_token: string;
+}
 
 interface AuthContextType {
   user: User | null;
