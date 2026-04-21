@@ -166,9 +166,9 @@ const Auth = () => {
 
           {/* User Type Selection */}
           <div className="space-y-3">
-            <Label className="font-mario-text font-bold text-mario-red flex items-center gap-2">
+            <Label className={`font-mario-text font-bold text-mario-red flex items-center gap-2 ${!userType ? 'animate-pulse' : ''}`}>
               <Star size={16} className="text-mario-yellow" />
-              ARE YOU A...
+              ARE YOU A... {!userType && <span className="text-xs">(REQUIRED)</span>}
             </Label>
             <div className="grid grid-cols-2 gap-3">
               <button
@@ -291,7 +291,7 @@ const Auth = () => {
             
             <Button
               type="submit"
-              disabled={loading || !userType}
+              disabled={loading}
               className="w-full bg-mario-red hover:bg-mario-dark-red text-white font-mario-text font-bold text-lg py-3 border-4 border-mario-black shadow-lg hover:shadow-xl transition-all duration-300"
             >
               {loading ? (

@@ -2,24 +2,50 @@
 import { LocalDb } from '@/lib/localDb';
 import { LocalAuth } from '@/lib/localAuth';
 
+// Mock event system for auth
+const authListeners: ((event: string, session: any) => void)[] = [];
+const notifyAuthListeners = (event: string, session: any) => {
+  authListeners.forEach(listener => listener(event, session));
+};
+
 // This is a mock Supabase client that uses localStorage
 const mockSupabase = {
   auth: {
     onAuthStateChange: (callback: any) => {
+      authListeners.push(callback);
       const session = LocalAuth.getSession();
       if (session) {
         callback('SIGNED_IN', session);
       }
-      return { data: { subscription: { unsubscribe: () => {} } } };
+      return { 
+        data: { 
+          subscription: { 
+            unsubscribe: () => {
+              const index = authListeners.indexOf(callback);
+              if (index !== -1) authListeners.splice(index, 1);
+            } 
+          } 
+        } 
+      };
     },
     signInWithPassword: async ({ email, password }: any) => {
-      return LocalAuth.signIn(email, password);
+      const result = await LocalAuth.signIn(email, password);
+      if (result.data?.session) {
+        notifyAuthListeners('SIGNED_IN', result.data.session);
+      }
+      return result;
     },
     signUp: async ({ email, password, options }: any) => {
-      return LocalAuth.signUp(email, password, options?.data);
+      const result = await LocalAuth.signUp(email, password, options?.data);
+      if (result.data?.session) {
+        notifyAuthListeners('SIGNED_UP', result.data.session);
+      }
+      return result;
     },
     signOut: async () => {
-      return LocalAuth.signOut();
+      const result = await LocalAuth.signOut();
+      notifyAuthListeners('SIGNED_OUT', null);
+      return result;
     },
     getSession: async () => {
       return { data: { session: LocalAuth.getSession() }, error: null };

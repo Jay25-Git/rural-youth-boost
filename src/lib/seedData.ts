@@ -2,11 +2,23 @@
 import { LocalDb } from './localDb';
 
 export const seedDatabase = () => {
-  // Only seed if no users exist
-  const existingUsers = LocalDb.get('users');
-  if (existingUsers.length > 0) return;
+  // Use a versioned flag to ensure seeding runs at least once
+  const SEED_VERSION = 'v1';
+  const hasSeeded = localStorage.getItem('skillsynq_seeded_version');
+  
+  if (hasSeeded === SEED_VERSION) {
+    console.log('✅ Database already seeded (v1)');
+    return;
+  }
 
-  console.log('🌱 Seeding local database...');
+  console.log('🌱 Seeding local database (v1)...');
+
+  // Clear existing users/profiles if we're forcing a seed to avoid weird states
+  // but keep the user's actual progress if they have one? 
+  // For now, let's just append or ensure these specific ones exist.
+  
+  const existingUsers = LocalDb.get<any>('users');
+  const existingEmails = new Set(existingUsers.map(u => u.email));
 
   // 1. Mock Users
   const users = [
@@ -36,9 +48,16 @@ export const seedDatabase = () => {
     }
   ];
 
-  users.forEach(user => LocalDb.insert('users', user));
+  users.forEach(user => {
+    if (!existingEmails.has(user.email)) {
+      LocalDb.insert('users', user);
+    }
+  });
 
   // 2. Mock Profiles
+  const existingProfiles = LocalDb.get<any>('profiles');
+  const existingProfileIds = new Set(existingProfiles.map(p => p.id));
+
   const profiles = [
     {
       id: 'user-mario',
@@ -74,9 +93,16 @@ export const seedDatabase = () => {
     }
   ];
 
-  profiles.forEach(profile => LocalDb.insert('profiles', profile));
+  profiles.forEach(profile => {
+    if (!existingProfileIds.has(profile.id)) {
+      LocalDb.insert('profiles', profile);
+    }
+  });
 
   // 3. Mock Stories
+  const existingStories = LocalDb.get<any>('stories');
+  const existingStoryIds = new Set(existingStories.map(s => s.id));
+
   const stories = [
     {
       id: 'story-1',
@@ -110,7 +136,11 @@ export const seedDatabase = () => {
     }
   ];
 
-  stories.forEach(story => LocalDb.insert('stories', story));
+  stories.forEach(story => {
+    if (!existingStoryIds.has(story.id)) {
+      LocalDb.insert('stories', story);
+    }
+  });
 
   // 4. Mock Story Likes
   const likes = [
@@ -121,5 +151,6 @@ export const seedDatabase = () => {
 
   likes.forEach(like => LocalDb.insert('story_likes', like));
 
+  localStorage.setItem('skillsynq_seeded_version', SEED_VERSION);
   console.log('✅ Seeding complete!');
 };
