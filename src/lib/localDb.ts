@@ -56,4 +56,69 @@ export class LocalDb {
     const data = this.get<T>(table);
     return predicate ? data.filter(predicate) : data;
   }
+
+  static seed(): void {
+    const users = this.get('users');
+    if (users.length > 0) return;
+
+    // Seed Users
+    const marioId = crypto.randomUUID();
+    const luigiId = crypto.randomUUID();
+
+    this.save('users', [
+      { id: marioId, email: 'mario@test.com', password: 'password123' },
+      { id: luigiId, email: 'luigi@test.com', password: 'password123' }
+    ]);
+
+    // Seed Profiles
+    this.save('profiles', [
+      { 
+        id: marioId, 
+        user_id: marioId, 
+        nickname: 'Super Mario', 
+        user_type: 'mentor',
+        avatar_url: 'mario',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      },
+      { 
+        id: luigiId, 
+        user_id: luigiId, 
+        nickname: 'Green Luigi', 
+        user_type: 'student',
+        avatar_url: 'luigi',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }
+    ]);
+
+    // Seed Stories
+    this.save('stories', [
+      {
+        id: crypto.randomUUID(),
+        user_id: marioId,
+        author_name: 'Super Mario',
+        title: 'Mastering the Pipes',
+        content: 'I spent years learning the ins and outs of plumbing. It takes patience and the right tools! Always remember to check the washers first.',
+        skill: 'Plumbing',
+        created_at: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+      },
+      {
+        id: crypto.randomUUID(),
+        user_id: luigiId,
+        author_name: 'Green Luigi',
+        title: 'Overcoming Stage Fright',
+        content: 'I used to be very shy, but by practicing communication skills in small groups, I became much more confident. You can do it too!',
+        skill: 'Communication',
+        created_at: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
+      }
+    ]);
+
+    // Seed some likes
+    this.save('story_likes', []);
+    this.save('story_replies', []);
+  }
 }
+
+// Automatically seed on load
+LocalDb.seed();
